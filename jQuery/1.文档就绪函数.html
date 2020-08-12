@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <img id="img1" src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E7%8C%AB%E5%92%AA%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=1841885703,3919819214&os=922082232,1307271808&simid=3359492852,202787785&pn=82&rn=1&di=96030&ln=856&fr=&fmq=1596723754526_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=1e&objurl=http%3A%2F%2Fi02.cztv.com%2Fhainapic%2F201310%2F55%2F13344908086133797399.jpg&rpstart=0&rpnum=0&adpicid=0&force=undefined" alt="">
+        <img id="img2" src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E7%8C%AB%E5%92%AA%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=169259905,2400708162&os=2858328305,4007457288&simid=35722871,619536232&pn=93&rn=1&di=48180&ln=856&fr=&fmq=1596723754526_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=3c&objurl=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D0244ea53d309b3deebbfe460fcbf6cd3%2Fb56edb1373f082020ea5dc0449fbfbedab641bfe.jpg&rpstart=0&rpnum=0&adpicid=0&force=undefined" alt="">
+        <img src="https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E7%8C%AB%E5%92%AA%E5%9B%BE%E7%89%87&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=46093075,3055843285&os=2372545662,3405649730&simid=0,0&pn=163&rn=1&di=102780&ln=856&fr=&fmq=1596723754526_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=11&spn=0&pi=0&gsm=78&objurl=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F12225694347%2F641&rpstart=0&rpnum=0&adpicid=0&force=undefined" alt="">
+    </div>
+    
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+
+        //window.onload是等待页面中所有资源加载完成才执行
+        window.onload = function(){
+            console.log(111);
+        }
+        //.ready（文档就绪函数）等待所有dom元素加载完后就执行
+        $(document).ready(function(){
+            console.log(222);
+        });
+        //与ready效果相同（简写）
+        $(function(){
+            console.log(333);
+        });
+        //函数立即调用
+        (function(){
+            console.log(444);
+        }) ()
+    </script>
+</body>
+</html>

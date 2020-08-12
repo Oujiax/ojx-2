@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        #container{
+            height: 100%;
+            /* width: 100%; */
+            position: relative;
+            background: url('img/bg.jpg');
+        }
+        .thumbs{
+            height: 125px;
+            width: 125px;
+            border: 5px solid #fff;
+            position: absolute;
+            left: -135px;
+            right: -135px;
+            transition: all ease 2s;
+        }
+        .thumbs span{
+            position: absolute;
+            left: -0;
+            top: -0;
+            bottom: 0;
+            right: 0;
+            display: none;
+        }
+        #prev{
+            height: 100px;
+            width: 50px;
+            background: url('img/prev.png') #fff no-repeat center;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            border-radius: 0 15px 15px 0;
+            transition: ease 1s all;
+            opacity: 0;
+        }
+        #next{
+            height: 100px;
+            width: 50px;
+            background: url('img/next.png') #fff no-repeat center;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            border-radius: 15px 0 0 15px;
+            transition: ease 1s all;
+            opacity: 0;
+        }
+        #prev:hover,#next:hover{
+            background-color: #ccc;
+            transition: ease 0.5s all;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- img动态创建 -->
+        <div id="prev"></div>
+        <div id="next"></div>
+    </div>
+    <script>
+        (function(){
+            var oContainer = document.getElementById('container');
+            
+            var count = 0;
+
+            // 1.加载所有图片
+            for(var i=0;i<24;i++){
+                //加载所有小图               
+                var smallImage = new Image();
+                smallImage.src = 'img/thumbs/'+ (i+1) +'.jpg';
+                smallImage.onload = function(){
+                    count ++;
+                    if(count == 48){
+                        loadSuccess();
+                    }
+                    
+                }
+
+                //加载所有大图
+                var bigImage = new Image();
+                bigImage.src = 'img/' + (i + 1) + '.jpg';
+                bigImage.onload = function () {
+                    count++;
+                    if (count == 48) {
+                        loadSuccess();
+                    }
+                }                  
+            }
+
+            function loadSuccess(){
+                var imgName = 0;
+                var smallImgWidth = smallImgHeight = 125;
+                //小图片空隙距离
+                var smallDisX = (oContainer.offsetWidth - 6 * (smallImgWidth +10)) / 7;
+                var smallDisY = (oContainer.offsetHeight - 4 * (smallImgHeight +10)) / 5;
+
+                //大图片空隙距离
+                var bigDisX = (oContainer.offsetWidth - 6 * (smallImgWidth +2)) / 2;
+                var bigDisY = (oContainer.offsetHeight - 4 * (smallImgHeight +2)) / 2;
+
+                var oPrev = document.getElementById('prev');
+                var oNext = document.getElementById('next');
+
+                // 2.创建24个小Div装小图片                
+                for(var i=0;i<4;i++){
+                    for(var j=0;j<6;j++){
+                        imgName ++;
+                        var oDiv = document.createElement('div');
+                        oDiv.style.background = 'url(img/thumbs/'+ imgName +'.jpg)';
+                        oDiv.className = 'thumbs';
+                        oDiv.col = i;
+                        oDiv.row = j;
+                        oDiv.index = imgName;
+                        oDiv.onclick = toggle;
+                        oDiv.innerHTML = '<span></span>';
+                        oContainer.appendChild(oDiv);
+                    }                   
+                }
+                // 3.计算小Div的位置
+                var aThumbs = document.getElementsByClassName('thumbs');
+                var aSpan = oContainer.getElementsByTagName('span');
+                setTimeout(function(){
+                    for(var i=0;i<aThumbs.length;i++){
+                        aThumbs[i].style.left = (aThumbs[i].row + 1) * smallDisX + aThumbs[i].row * (smallImgWidth + 10) +'px';
+                        aThumbs[i].style.top = (aThumbs[i].col + 1) * smallDisY + aThumbs[i].col * (smallImgHeight + 10) +'px';
+                        aThumbs[i].style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+                        aThumbs[i].style.tranistionDelay = (aThumbs.length - i) * 100 + 'ms';
+                    }
+                },100)
+
+                var index = 0;
+                var isBig = false;
+                function toggle(){                   
+                    index = this.index;
+                    if (isBig) {
+                        //散开
+                        for(var i=0;i<aThumbs.length;i++){
+                            aThumbs[i].style.left = (aThumbs[i].row + 1) * smallDisX + aThumbs[i].row * (smallImgWidth + 10) + 'px';
+                            aThumbs[i].style.top = (aThumbs[i].col + 1) * smallDisY + aThumbs[i].col * (smallImgHeight + 10) + 'px';
+                            aThumbs[i].style.transform = 'rotate(' + (Math.random() * 40 - 20) + 'deg)';
+                            aThumbs[i].style.tranistionDelay = (aThumbs.length - i) * 100 + 'ms';
+                            aThumbs[i].style.borderWidth = '5px';
+                            aSpan[i].style.display = 'none';
+                        }
+                        isBig = !isBig;
+                        oNext.style.opacity = oPrev.style.opacity = 0;
+                    } else {
+                        //合并
+                        for(var i=0;i<aThumbs.length;i++){
+                            aThumbs[i].style.left = bigDisX + aThumbs[i].row * (smallImgWidth + 2) + 'px';
+                            aThumbs[i].style.top = bigDisY + aThumbs[i].col *(smallImgHeight + 2) + 'px';
+                            aThumbs[i].style.transform = 'rotate(0deg)';
+                            aThumbs[i].style.tranistionDelay = '0ms';
+                            aThumbs[i].style.borderWidth = '1px';
+                            aSpan[i].style.display = 'block';
+                            aSpan[i].style.background = 'url(img/' + index + '.jpg)' + -aThumbs[i].row * smallImgWidth + 'px ' + -aThumbs[i].col * smallImgHeight + 'px';
+                        }
+                        isBig = !isBig;
+                        oNext.style.opacity = oPrev.style.opacity = 1;
+                    }
+                }
+                oPrev.onclick = function(){
+                    
+                    index = index <= 1 ? 24 : --index;
+                    for (var i = 0; i < aSpan.length; i++) {
+                        aSpan[i].style.backgroundImage = 'url(img/' + index + '.jpg) ';
+                        aSpan[i].style.transitionDelay = Math.random() * 500 + 'ms';
+                    }
+                }
+                oNext .onclick = function(){
+                    index = index >= 24 ? 1 : ++index;
+                    for(var i = 0;i < aSpan.length; i++){
+                        aSpan[i].style.backgroundImage = 'url(img/'+ index + '.jpg)';
+                        aSpan[i].style.transitionDelay = Math.random() * 500 + 'ms';
+                    }
+                }
+                
+            }
+
+        })()
+    </script>
+</body>
+</html> 

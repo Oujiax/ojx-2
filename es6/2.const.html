@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1.const声明常量，声明后值不能改变
+        // const a = 3.4;
+        // a = 3;
+        // console.log(a); //报错： Assignment to constant variable.
+
+    // 2.const 也是块级作用域内有效，没有变量提升，存在暂时性死区，也不能重复声明
+        // const 常量foo储存的是一个地址，这个地址指向一个对象。不可变的只是这个地址
+        if(true){
+            console.log(a);//报错：Cannot access 'a' before initialization
+            const a = 3.14;
+        }
+        console.log(a);//报错：a is not defined
+    </script>
+</body>
+</html>

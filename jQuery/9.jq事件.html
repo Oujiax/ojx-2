@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #outer{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+        }
+        #inner{
+            height: 200px;
+            width: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">点击</button>
+    <form action="http://www.baidu.com" id="form1">
+        <p>
+            <input type="text" id="input1" value="abc">
+        </p>
+        <button type="submit" id="btn2">提交</button>
+    </form>
+    <button id="btn3">trigger</button>
+    <button id="btn4">triggerHandler</button>
+    <div id="div1">
+        <ul id="ul1">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+        </ul>
+    </div>
+    <div id="outer">outer</div>
+    <div id="inner">inner</div>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        var oBtn1 = document.getElementById('btn1');
+        // oBtn1.onclick = function(){
+        //     console.log('haha');
+        // }
+        // oBtn1.onclick = function(){
+        //     console.log('hehe');
+        // }
+        //输出hehe
+
+        oBtn1.addEventListener('click',function(){
+            console.log('haha');
+        });
+        oBtn1.addEventListener('click',function(){
+            console.log('hehe');
+        });
+        //输出 haha hehe
+        
+        // var $btn1 = $('#btn1');
+        // $btn1.click(function(){
+        //     console.log('haha');
+        // })
+        // $btn1.click(function(){
+        //     console.log('hehe');
+        // })
+        //输出 haha hehe
+
+
+        // 事件委托
+        var oUl1 = document.getElementById('ul1');
+        // oUl1.onclick = function(e){
+        //     e = e || window.Event;
+        //     var target = e.target || e.srcElement;
+        //     if(target.tagName == 'LI'){
+        //         console.log(target.innerHTML);
+        //     }
+        // }
+
+        // var lickHandler = function(){
+        //     console.log(this.innerHTML);
+        // }
+        // var aLi = oUl1.getElementsByTagName('li');                    
+        //     for(var i=0;i<aLi.length;i++){               
+        //         aLi[i].addEventListener('click',lickHandler,false);
+        //     };
+           
+        
+        var $ul1 = $('#ul1');
+        $ul1.on('click','li',function(){
+            console.log(this.innerHTML);
+        });
+
+        //resize调整窗口大小
+        // $(window).on('resize',function(){
+        //     console.log( Math.random() );
+        // })
+
+        //滚动条    
+        // $(window).on('scroll',function(){
+        //     console.log(Math.random());
+        // })
+
+        $('#form1').on('submit',function(e){            
+            console.log('hahha');
+            // e.preventDefault(); //阻止默认行为
+        })
+        
+        // $('#input1').on('focus',function(){
+        //     console.log(this.value);
+        // })
+        $('#btn3').on('click',function(){
+            $('#form1').trigger('submit');//阻止不了默认行为，会跳转
+            
+        })
+        $('#btn4').on('click',function(){
+            $('#form1').triggerHandler('submit');//可以阻止默认行为，不会跳转
+            
+        })
+
+        $('#outer').mouseenter(function(){
+            console.log('outer...')
+        })
+        $('#inner').on('mouseenter',function(){
+            console.log('inner...');
+        })
+
+        $('#inner').on('mousedown',function(e){
+            console.log(e.pageX,e.pageY);
+            console.log(e.type);
+            console.log(e.which);
+            if(e.which == 3){
+                console.log('鼠标右键');
+            }
+            
+        })
+    </script>
+</body>
+</html>

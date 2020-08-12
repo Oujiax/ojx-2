@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol</title>
+</head>
+<body>
+    <!-- Symbol是独一无二的值 -->
+    <!-- Symbol函数前不能使用new命令，否则会报错  因为生成的 Symbol 是一个原始类型的值，不是对象 -->
+    <script>
+        // let s1 = Symbol();
+        // let s2 = Symbol();
+        // console.log(s1==s2);//false
+
+        // let s1 = Symbol('foo');
+        // console.log(s1);//Symbol(foo)
+        // let s2 = Symbol('foo');
+        // console.log(s1 == s2);//false
+
+        let aaa = Symbol();
+        let obj1 = {
+            name: 'wangwu',
+            age: 18,
+            [aaa]: 'aaa',
+            [Symbol('s1')]: 's1',
+            [Symbol('s2')]: 's2',
+        }
+        console.log(obj1.name);//wangwu
+        console.log(obj1[aaa]);//aaa  如果属性名是symbol的时候只能通过这种方式取值
+        console.log(obj1[Symbol('s1')]);//undefined
+
+        obj1.sex = 'male';
+        console.log(obj1);
+        obj1[Symbol('s3')] = 's3';
+        console.log(obj1);//也可进入
+
+        // symbol属性无法通过循环取到   =>   只能一个一个拿
+        for(let p in obj1){
+            // console.log(p);//name age sex
+            console.log(obj1[p]);//wangwu 18 male
+        }
+    </script>
+</body>
+</html>

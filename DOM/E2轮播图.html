@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            height: 291px;
+            width: 750px;
+            margin: 100px auto 0;
+            position: relative;
+        }
+        #tab{
+            /* 弹性盒模型 */
+            display: flex;
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+            width: 120px;
+            /* 在弹性盒对象的 <div> 元素中的各项周围留有空白 */
+            justify-content: space-between;
+            text-align: center           
+        }
+        #tab li{
+            height: 20px;
+            width: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            line-height: 20px;
+        }
+        #tab .active{
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+        #img-box img{
+            display: none;
+        }
+        #img-box img:first-child{
+            display: block;
+        }
+        
+        .btn{
+            height: 50px;
+            width: 50px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            position: absolute;
+            /* 使两元素能够在一行显示，类似于浮动但不同 */
+            display: inline-block;
+            text-align: center;
+            line-height: 40px;
+            font-size: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            
+        }
+        #next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="img-box">
+            <img src="imgs/1.jpg" alt="">
+            <img src="imgs/2.jpg" alt="">
+            <img src="imgs/3.jpg" alt="">
+            <img src="imgs/4.jpg" alt="">
+            <img src="imgs/5.jpg" alt="">
+        </div>
+        <ul id="tab">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <span id="prev" class="btn">&lt;</span>
+        <span id="next" class="btn">&gt;</span>
+    </div>
+    <script>
+        // var aImg = document.getElementById('img-box');
+        var oContainer = document.getElementById('container');
+        var aImg = document.querySelectorAll('#img-box>img');
+        var aLi = document.querySelectorAll('#tab>li');
+        var oContainer = document.getElementById('container');
+        var oLeft = document.getElementById('prev');
+        var oRight = document.getElementById('next');
+
+        var currentIndex = 0;
+        function turn(){
+            for(var j=0;j<aLi.length;j++){
+                    aLi[j].className = '';
+                    aImg[j].style.display = 'none';
+                }              
+                aLi[currentIndex].className = 'active';
+                aImg[currentIndex].style.display = 'block';
+            }
+        // 根据tab切换图片    
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onclick = function(){
+                currentIndex = this.index;
+                turn();
+            }
+        }
+        // 根据按钮切换图片
+        oRight.onclick = function(){
+            currentIndex++;
+            
+            if(currentIndex>4){
+                currentIndex = 0;
+            }
+            turn();
+        }
+        oLeft.onclick = function(){
+            currentIndex--;           
+            if(currentIndex<0){
+                currentIndex = 4;
+            }
+            turn();
+        }
+        // 自动翻页
+        var timer;
+        function go(){
+            timer = setInterval(function(){
+                oRight.onclick();
+            },1000);
+        }
+        go();
+        oContainer.onmouseover = function(){
+            clearInterval(timer);
+        }
+        oContainer.onmouseout = function(){
+            go();
+        }
+    </script>
+</body>
+</html>

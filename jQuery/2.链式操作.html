@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链式操作</title>
+    <style>
+        #div1{
+            height: 200px;
+            width: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#div1').css('background','red')
+            .css('border','5px solid #000')
+            .css('height','100px');
+        });
+    </script>
+</body>
+</html>

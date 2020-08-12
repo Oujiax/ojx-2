@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tab1{
+            margin: 50px auto;  
+            border-collapse: collapse;
+            width: 120px;
+            text-align: center;
+        }
+        #tab1,#tab1 td{
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">添加新行</button>
+    <table id="tab1">
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+        
+    </table>
+    <script>
+        var oBtn1 = document.getElementById('btn1');
+        var oTab1 = document.getElementById('tab1');
+        // oBtn1.onclick = function(){
+        //     var oTr1 = document.createElement('tr');
+        //     oTab1.appendChild(oTr1);
+        //     var oTd1 = document.createElement('td');
+        //     oTd1.innerHTML = 'td1';
+        //     oTr1.appendChild(oTd1);
+        //     var oTd2 = document.createElement('td');
+        //     oTd2.innerHTML = 'td2';
+        //     oTr1.appendChild(oTd2);
+        //     var oTd3 = document.createElement('td');
+        //     oTd3.innerHTML = 'td3';
+        //     oTr1.appendChild(oTd3);
+        // }
+
+        var oTr = oTab1.insertRow();
+        var oTd = oTr.insertCell();
+        oTd.innerHTML = 'td1';
+        oTr.insertCell().innerHTML = 'td2';
+        oTr.insertCell().innerHTML = 'td3';
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj1 = {
+            name:'zhangsan',
+            age:18,
+            brother:{
+                name:'wangwu',
+                age:20,
+            }
+        };
+
+        // 这是赋值，不是拷贝
+        // let obj2 = obj1;
+        // obj2.name = 'lisi';
+        // console.log(obj2);//{name: "lisi", age: 18}
+        // console.log(obj1);//{name: "lisi", age: 18}   地址相同，所以被改了
+
+        // 深拷贝  对象
+        // function clone(obj){
+        //     let a = {};
+        //     for(let p in obj){
+        //         a[p] = obj[p];
+                
+        //         if(typeof obj[p] == 'object'){
+        //             // console.log(typeof obj[p]);
+        //             a[p] = clone(obj[p]);
+        //         }
+        //     }
+        //     return a;
+        // };
+        // let obj3 = clone(obj1);
+        // obj3.age = 66;
+        // obj3.brother.age = 55;
+        // console.log(obj1);// age: 18  未加前：broather.age:55   加后：broather.age:20
+        // console.log(obj3);// age: 66  未加前：broather.age:55   加后：broather.age:20
+
+        function clone(obj){
+            let a = obj.constructor == Array ? [] : {}; //判断是数组还是对象
+            for(let p in obj){
+                a[p] = obj[p];
+                console.log(typeof obj[p]);
+                if(typeof obj[p] == 'object'){
+                    // console.log(typeof obj[p]);
+                    a[p] = clone(obj[p]);
+                }
+            }
+            return a;
+        };
+        let arr1 = [1,2,[3,4]];
+        let arr2 = clone(arr1);
+        arr2[2][0] = 666;
+        console.log(arr1);//[1,2,[3,4]]
+        console.log(arr2);//[1,2,[666,4]]
+    </script>
+</body>
+</html>

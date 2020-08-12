@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            position: absolute;
+            
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">淡出</button>
+    <button id="btn2">淡入</button>
+    <button id="btn3">滑动</button>
+    <button id="btn4">toggle滑动</button>
+    <button id="btn5">调整透明度</button>
+    <button id="btn6">隐藏</button>
+    <button id="btn7">显示</button>
+    <button id="btn8">自定义动画</button>
+    <div id="div1">
+        <p>这是一个p标签</p>
+    </div>
+    
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script src="./jquery.easing.1.3.js"></script>
+    <script>
+        $(function(){
+            $('#btn1').click(function(){
+                $('#div1').fadeOut(2000,function(){
+                    console.log("动画已完成");
+                });
+            });
+            $('#btn2').click(function(){
+                $('#div1').fadeIn(2000);
+            });
+            var $btn3 = $('#btn3');
+            $btn3.click(function(){
+                $('#div1').slideUp(2000);
+                $btn3.click(function(){
+                    $('#div1').slideDown(2000);                   
+                })               
+            })  
+            $('#btn4').click(function () {
+                $('#div1').slideToggle(2000);
+            })       
+
+            $('#btn5').click(function(){
+                $('#div1').fadeTo(2000,0.5); //必须规定时间和透明度
+            }) 
+
+            $('#btn6').click(function(){
+                $('p').hide();
+            })
+            $('#btn7').click(function(){
+                $('p').show();
+            })
+
+            $('#btn8').click(function(){
+                $('#div1').animate({
+                    opacity: 0.5,
+                    left: +50,
+                    
+                },2000,"easeInQuart",function(){
+                    $('#div1').animate({
+                    height: 'toggle',
+                    width: 'toggle',   
+                    },3000)
+
+                })
+            })
+            
+        })
+        
+    </script>
+</body>
+</html>

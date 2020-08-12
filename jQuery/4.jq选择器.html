@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" checked="checked" >
+    <input type="checkbox">
+
+    <table id="tab" border="1">
+        <tr id="td1">
+            <td>td1</td>
+            <td>td2</td>
+            <td>td3</td>
+        </tr>
+        <tr>
+            <td>td1</td>
+            <td>td2</td>
+            <td>td3</td>
+        </tr>
+        <tr>
+            <td>td1</td>
+            <td>td2</td>
+            <td>td3</td>
+        </tr>
+    </table>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li></li>
+    </ul>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+
+
+        $(function(){
+            $('input:not(checked)').click(function(){
+                console.log(1111);
+            });
+            $('#tab tr:even').css('background','red');
+            $('#tab tr:odd').css('background','blue');
+            $('#tab td:contains(td1)').css('background','green');
+            $('#td1 td:eq(2)').css('background','yellow');
+            $('ul li:empty').css('background','red');
+        })
+        
+    </script>
+</body>
+</html>

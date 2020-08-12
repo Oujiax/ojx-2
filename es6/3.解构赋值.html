@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.数组解构
+        var arr1 = [1, 2, 3];
+        // let [a1,a2,a3] = arr1;
+        // console.log(arr);// [1, 2, 3]
+        // console.log(a1,a2,a3);//1,2,3
+
+        // let [a1,a2,a3,a4] = arr1;
+        // console.log(a1,a2,a3,a4);//1 2 3 undefined
+        // console.log(a1,a2);//1 2
+
+        // let [a1, ,a3,a4] = arr1;
+        // console.log(a1,a3,a4);//1 3 undefined
+
+        // let [a1,a2, ...a3] = ['a'];
+        // console.log(a1);//a
+        // console.log(a2);//undefined
+        // console.log(a3);//[]
+
+        // let [x,y = 12] = [10];
+        // console.log(x);//10
+        // console.log(y);//12
+
+        // let [a = 3,b] = [5];
+        // console.log(a);//5
+        // console.log(b);//undefined
+
+        // let [x = 1, y = x] = [];
+        // console.log(x);//1
+        // console.log(y);//1
+
+        // let [x = y, y = 1] = [];
+        // console.log(x);//报错：Identifier 'x' has already been declared
+        // console.log(y);
+
+        // 2.对象的解构
+        // let {a,b} = {a:12 , b:10};
+        // let {c} = {a:12 , b:10};
+        // console.log(a);//12
+        // console.log(b);//10
+        // console.log(c);//undefined  变量没有对应的同名属性，导致取不到值
+
+        // let obj = {first:'hello',second:'world'};
+        // let {first : f,second : s} = obj;
+        // console.log(f);//hello
+        // console.log(s);//world
+
+        // let {foo: baz} = {foo: 'aaa',bar: 'bbb'};
+        // console.log(baz);//aaa
+        // console.log(foo);//报错：foo is not defined    foo是匹配的模式，baz才是变量。真正被赋值的是变量baz，而不是模式foo。
+
+        // let obj = {
+        //     p: 
+        //     ['hello',
+        //     {y: 'world'}
+        //     ]                
+        // }
+        // let {p: [ x , {y} ]} = obj;
+        // console.log(p);//报错：p is not defined  p是模式，不是变量，因此不会被赋值
+        // console.log(x);//hello
+        // console.log(y);//world
+
+        // let {p,p: [ x , {y} ]} = obj;
+        // console.log(p);// ['hello',{y: 'world'}]
+
+        // const obj = {
+        //     foo:{
+        //         start:{
+        //             a : 1,
+        //             b : 2,
+        //         }
+        //     }
+        // }
+
+        // let {foo, foo:{start}, foo:{start:{a,b}}} = obj;
+        // // let {foo} = obj;
+        // console.log(foo);//{start:{a:1,b:2}}
+        // console.log(start);//{a: 1, b: 2}
+        // console.log(a);//1
+
+        // let {x: y = 3} = {};
+        // console.log(y);//3
+        // // let {x: y = 3} = {x: 5};
+        // // console.log(y); //5
+
+        // 默认值生效的条件是，对象的属性值严格等于undefined。
+        // let {x = 3} = {x: undefined};
+        // console.log(x);//3
+        // let {x = 3} = {x: null};
+        // console.log(x);//null
+
+        // 3.字符串的解构
+        // let [a,b,c,d,e] = "hello";
+        // console.log(a,b,c,d,e); //h e l l o
+
+        // let str = "hello";
+        // let [a, ,c,d,e,f] = str;
+        // console.log(a,c,d,e,f);//h l l o undefined
+
+        // 4.函数参数的解构
+        // function fn1( [a,b,c,d] ){
+        //     console.log(a,b,c,d);//1 2 3 4
+        // }
+        // fn1([1,2,3,4]);
+
+        // function fn2( [a = 3,b = 4,c,d] ){
+        //     console.log(a,b,c,d);
+        // }
+        // fn2([1,2]);//1 2 undefined undefined
+        // function fn3( [a,b,c = 3,d = 4] ){
+        //     console.log(a,b,c,d);
+        // }     
+        // fn3([1,2]);//1 2 3 4
+
+        //变量交换
+
+        let x = 111;
+        let y = 222;
+        // [x,y] = [y,x];
+        // console.log(x,y);//222  111
+
+        // 函数中是值传递（js没有操作指针的方式）
+        // (function change(){
+        //     let temp;
+        //     temp = x;
+        //     x = y;
+        //     y = temp;
+        // })();
+        // console.log(x,y);//222 111
+
+        (function change2() {
+            [x, y] = [y, x];
+        })()
+        console.log(x, y);//222 111
+    </script>
+</body>
+
+</html>

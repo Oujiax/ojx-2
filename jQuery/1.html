@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            height: 300px;
+            width: 300px;
+        }
+        #div4{
+            height: 100px;
+            width: 100px;
+        }
+        #p{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="div1,div2"></div>
+    <p id="p1">12345</p>
+    <span class="span1">1111</span>
+    <div id="div4"></div>
+    <input type="text" id="input1" value="bb">
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        $('div,p,span').css('background','red');
+        $('div,p,span').css('border','5px solid #000');
+        console.log( $('#div1').attr('class') ); 
+        $('#div1').attr('class','div111');
+        console.log( $('#div1').attr('class') );
+        $('#div1').attr('aa','bb');
+        console.log( $('#div1').attr('aa') );
+
+        // tagName、nodeName等不是attribute属性
+        console.log( $('#div1').attr('tagName') ); //返回undefined
+        console.log( $('#div1').prop('tagName') );//返回DIV
+
+        console.log( $('#div1').attr('nodeName') );//返回undefined
+        console.log( $('#div1').prop('nodeName') );//返回DIV
+         
+        console.log( $('#input1').val() );
+        $('#input1').val('ddd');
+    </script>
+</body>
+</html>

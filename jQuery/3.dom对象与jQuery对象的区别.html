@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">div1</div>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        //原生dom对象写法
+        var oDiv1 = document.getElementById('div1');
+        var aLi = document.getElementsByTagName('li');
+        //jQuery对象写法
+        var $div1 = $('#div1');
+        var $li = $('li');
+        console.log( $(oDiv1) == $div1 );
+        
+        //原生=>jQuery对象
+        var $div2 = $(oDiv1);
+
+        //jQuery对象=>原生
+        var oDiv2 = $('#div1')[0];
+        oDiv1.onclick = function(){
+            console.log(111);
+        };
+        $(div1).click(function(){
+            console.log(this);
+        });
+
+        for(var i = 0; i < aLi.length; i++){
+            aLi[i].onclick = function(){
+                console.log(333);
+            }
+        };
+        
+        $('li').click(function(){
+            console.log(this);
+        });
+    </script>
+</body>
+</html>

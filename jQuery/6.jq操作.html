@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <span>span test</span>
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        // var oH1 = document.createElement('h1');
+        oH1.innerHTML = "这是一个h1标签";
+        var oDiv1 = document.getElementById('div1');
+        // oDiv1.appendChild(oH1);
+        var oInput = document.getElementsByTagName('input');
+        $(function(){
+            $('#div1').after('<input value="abc">');//作为兄弟节点，插到最后
+
+            $('#div1').append('<span>test</span>');//在div1里插到最后
+
+            $('<p>这是一个p标签</p>').appendTo('#div2');//在div2里插到最后
+
+            console.log(  $('#div1').html());
+            // $('#div1').html('<span>这是一个span</span>');
+
+            $('ul').wrap('<div id="div3">').css('background','red');
+
+            $('#div3').remove();
+
+            
+        })
+        function remove(elem){
+            elem.parentNode.removeChild(elem);
+        }
+        remove(oH1);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">
+            <p>这是一个p标签</p>
+        </div>
+        <ul class="level1">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li class="aa">item 3</li>
+            <ul>
+                <li>最底层</li>
+            </ul>
+            <li>item 4</li>
+        </ul>
+        <ul class="level2">
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div id="div3">
+        <span>span</span>
+    </div>
+
+    <script src="./jquery-3.5.1.min.js"></script>
+    <script>
+        // $('div li').first().css('background','red');
+        // $('#div1 li').eq(1).css('border','2px solid yellow');
+        // $('li').filter(':even').css('background','blue');
+        // $('div').filter('#div3').css('background','green');
+
+        // $('#div1').nextAll().css('border','2px solid #000');
+        // $('li').first().nextUntil('.aa').css('background','red');
+
+        // $('.level1').children().css('background','red');
+        // $('.level1').find('li').css('background','blue');
+
+        $('.level1 li').each(function(index,elem){
+            console.log( index +':'+ elem.innerHTML  );
+            console.log(index +':'+ this.innerHTML);
+            console.log( $(this).html() );
+        });
+        // $('#div3')
+        //     .append('<h1>这是h1</h1>')
+        //     .append('<span>这是span</span>')
+        //     .children('span')
+        //     .css('background', 'green')
+        //     .end()
+        //     .css();
+
+        $('#div3')
+        .append('<h1>这是一个h1标签</h1>')
+        .css('border','2px solid #000')
+        .children('span')
+        .css('background','green')
+        .end()
+        .css('width', 200)
+    </script>
+</body>
+</html>
