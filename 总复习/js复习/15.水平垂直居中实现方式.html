@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            position: relative;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            /* top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto; */
+            /* top: 50%;
+            left: 50%;
+            transform: translate(-50px,-50px); */
+            
+            top: calc(50% - 100px/2);
+            left: calc(50% - 100px/2);
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <!-- 
+        //display:flex
+            .parent {
+                display: flex;
+                justify-content: center;
+                align-items: center;	
+            }
+            
+        //position
+        .parent {
+            position：relative;
+        }
+        (1).child {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        (2).child {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+     -->
+     
+</body>
+</html>

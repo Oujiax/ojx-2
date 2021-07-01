@@ -1,0 +1,11 @@
+h1{
+    background: red;
+}
+#div1{
+    height: 500px;
+    background: url(./imgs/b.png);
+    transform: rotate(45deg);
+}
+#student{
+    width: 200px;
+}

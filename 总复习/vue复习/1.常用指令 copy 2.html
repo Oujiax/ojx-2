@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            background: blue;
+        }
+
+        .div2 {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        vue常用指令
+            v-for  遍历数组或对象
+            v-text & v-html 识别文本  v-html可以识别标签  {{}} 先是dom结构，在渲染出文本
+            v-on $event @  绑定事件
+            v-model 双向绑定
+            v-bind : 绑定属性 两种方式
+            v-if v-else-if v-else 
+            v-show   v-show=false 相当于 display:none
+            v-if是控制页面进行dom操作  ，若想多次切换使用v-show
+     -->
+    <div id="box">
+        <!-- <p v-text="msg"></p>
+        <p v-html="msg"></p>
+        <p>{{msg}}</p> -->
+        <button @click="change">变换</button>
+        <!-- <div v-bind:class="{div1:isDiv1,div2:isDiv2}">123456</div> -->
+        <div v-bind:class="['div1',isDiv2?'div2':'']">123456</div>
+        <button v-on:click="add">增加</button>
+        <ul>
+            <li v-for="item in list">
+                <span>名字：{{item.name}}</span>
+                <span>年龄：{{item.age}}</span>
+            </li>
+        </ul>
+        <input type="text" v-model="something">
+        <button @click="getData">确定</button>
+        <div>
+            <input type="checkbox" v-model="fruit" value="banana">香蕉
+            <input type="checkbox" v-model="fruit" value="apple">苹果
+            <input type="checkbox" v-model="fruit" value="orange">橘子
+        </div>
+        <p v-if="flag" @click="turn">v-if true</p>
+        <p v-else>v-else false</p>
+        <p v-show="flag" @click="turn">v-show</p>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                msg: '<a href="http://www.baidu.com">百度</a>',
+                something: '',
+                isDiv1: true,
+                isDiv2: false,
+                fruit: [],
+                flag:true,
+                list: [
+                    {
+                        name: 'zs',
+                        age: 20
+                    },
+                    {
+                        name: 'ls',
+                        age: 22
+                    },
+                    {
+                        name: 'ww',
+                        age: 20
+                    },
+                ]
+            },
+            methods: {
+                add() {
+                    this.list.push({
+                        name: 'zy',
+                        age: 23
+                    })
+                },
+                getData() {
+                    console.log(this.something);
+                },
+                change() {
+                    this.isDiv1 = !this.isDiv1;
+                    this.isDiv2 = !this.isDiv2;
+                },
+                turn(){
+                    this.flag = !this.flag
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

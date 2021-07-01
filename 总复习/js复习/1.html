@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+    <!-- 
+
+        1.js数据类型
+            基本数据类型：string number boolean null undefined symbol
+            引用数据类型：object array
+            eg: typeof 123  => "number"
+                typeof "123"  => "string"
+                typeof true  => "boolean"
+               *typeof null  => "object"
+               *typeof undefined  => "undefined"
+               *typeof [1,2,3]  => "object"   (new出来的都是object类型)
+               *typeof {name:'zs'}  => "object"
+               *typeof 函数  => "function"
+
+        2.判断数组和对象
+            Array.isArray()
+            instanceof  Array/Object   判断是否为Array下的具体的一个实例化对象
+            constructor  构造函数，判断这个实例是由什么new出来的
+     -->
+    <script>
+        // console.log(typeof {name:'zs'});
+        var a1 = [1,2,3];
+        var obj = {
+            name: "zs"
+        }
+        console.log(Array.isArray(a1));
+        console.log(a1 instanceof  Array);
+        console.log(obj instanceof  Object);
+        console.log( a1.constructor);  //Array
+        console.log( obj.constructor); //Object
+
+    </script>
+</body>
+</html>

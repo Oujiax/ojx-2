@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        箭头函数
+            (1)箭头函数的this指向父作用域的this(声明时的this)
+              普通函数的this指向调用时的this
+            (2)箭头函数不能用作构造函数(也就是不可以使用new命令)
+            (3)箭头函数中不能用arguments对象(如果用可以用rest代替)
+
+     -->
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        let aLi = document.getElementsByTagName('li');
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].onclick = function(){
+                setTimeout((function(){
+                    console.log(this);
+                }).bind(this),1000)
+
+                // console.log(this);//aLi[i]
+
+                // setTimeout(()=>{
+                //     console.log(this);//aLi[i]
+                // },1000)
+            }
+        }
+        /* FALSE构造函数 */
+        // let a =() =>{
+
+        // }
+        // var xxx = new a()
+
+        /* 箭头函数中不能用arguments对象 */
+        // let a = (x,y,z) =>{
+        //     console.log(x,y,z);
+        //     console.log(arguments);//报错 arguments is not defined
+        // }
+        // a(1,2,3);
+        // let b = function(x,y,z){
+        //     console.log(x,y,z);
+        //     console.log(arguments);//Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+        //     console.log(arguments.callee);//函数本身，一般用于函数的递归调用
+        // }
+        // b(1,2,3);
+
+        /* rest接收剩余的所有参数，是一个数组 */
+        let a = (x,...rest) =>{
+            // console.log(rest);//[1 2 3]
+            console.log(...rest);//[2 3]
+        }
+        a(1,2,3);
+    </script>
+</body>
+
+</html>

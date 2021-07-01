@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        jquery原理
+        $() 是一个函数 返回值是jq对象
+        jquery是一个类，在这个类中有许多jq自定义的方法，每次调用$返回一个新的jq对象，同时在$函数中根据传入参数的类型，函数或字符串，判断需要做的事情
+        在每一个方法中，return this就能实现链式操作(this就是$函数中返回的jq对象)
+     -->
+     <div class="div1">1111</div>
+     <script>
+         function $(str){
+            // console.log(this.eles);
+             return new Jquery(str)
+         }
+         function Jquery(str){
+            this.eles = [];
+            var sel = str.charAt(0);  //获取选择器
+            var sname = str.substr(1); //获取标签名
+            console.log(sel,sname);//# div1
+            if(sel == "#"){
+                this.eles.push(document.getElementById(sname));
+                console.log(this.eles); //[div#div1]
+            }else if(sel == "."){
+                // this.eles = document.getElementsByClassName(sname); //HTMLCollection [div.div1]
+                this.eles = [...document.getElementsByClassName(sname)]; //[div.div1]
+                console.log(this.eles);
+            }
+         }
+         Jquery.prototype.css = function(arg1,arg2){
+            if(typeof arg1 == "string" && typeof arg2 == "string"){
+                this.eles.map(function(ele,index){
+                    ele.style[arg1] = arg2  //[] 动态添加属性
+                })
+            }else if(typeof arg1 == "object"){
+               this.eles.map(function(ele,index){
+                   for (key in arg1) {
+                       ele.style[key] = arg1[key]
+                   }
+               })
+            }
+            // console.log(this);
+            return this
+         }
+         Jquery.prototype.on = function(ename,handle){
+            this.eles.map(function(ele,index){
+                ele.addEventListener(ename,handle)
+            })
+            return this
+         }
+        //  $('.div1').css('background','red')
+         $('.div1').css({
+             background: 'red',
+             height: '100px'
+         }).on('click',function(){
+             console.log('click');
+         })
+     </script>
+</body>
+</html>

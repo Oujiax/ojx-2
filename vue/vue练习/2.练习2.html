@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易购物车</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 400px;
+            margin: 50px auto;
+        }
+
+        li {
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            background: pink;
+            margin: 10px 0;
+        }
+
+        li span {
+            padding: 0 5px;
+        }
+
+        ul {
+            border-bottom: 1px solid gray;
+        }
+
+        .active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h1>商品列表</h1>
+            <ul>
+                <li v-for="item in list" @click="change(item)" :class="[item.isActive?'active':'']">
+                    <span>{{item.goods}}</span>
+                    <span>{{item.price}}</span>
+                </li>
+            </ul>
+            <!-- 普通属性 -->
+            <!-- <p>总价：{{this.total}}</p> -->
+
+            <!-- 调用方法 -->
+            <p>总价：{{add()}}</p>
+
+            <!-- 计算属性 -->
+            <p>总价：{{sum}}</p>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                // total:0,
+                list: [
+                    {
+                        goods: '裤子',
+                        price: 599,
+                        isActive: false
+                    },
+                    {
+                        goods: '衬衫',
+                        price: 799,
+                        isActive: false
+                    },
+                    {
+                        goods: '电脑',
+                        price: 7999,
+                        isActive: false
+                    },
+                    {
+                        goods: 'T裇',
+                        price: 399,
+                        isActive: false
+                    },
+                ]
+            },
+            computed: {
+                sum(){
+                    let count = 0
+                    this.list.forEach((obj,index)=>{
+                        if((obj.isActive)){
+                            count += obj.price
+                        }
+                    })
+                    return count
+                }
+            },
+            methods: {
+                change(obj){
+                    obj.isActive = !obj.isActive
+                    this.add()
+                },
+                add(){
+                    let count = 0
+                    this.list.forEach((obj,index)=>{
+                        if((obj.isActive)){
+                            count += obj.price
+                        }
+                    })
+                    // this.total = count
+                    return count
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

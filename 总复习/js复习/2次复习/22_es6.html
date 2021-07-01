@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!--   es6
+            1.let 和 var const的区别
+                let (1)不存在变量提升（在定义变量之前使用会报错） 
+                    (2)块级作用域（es5只有全局作用域和函数作用域） 
+                    (3)暂时性死区（如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。）
+
+                    (4)相同变量名不能重复声明（同一作用域内）
+                const 声明一个只读常量  
+                      const保证的并不是值不能更改，而是变量指向的内存地址不更改
+                      const在声明数组或对象时，内部的值是可以更改的，但可以用Object.freeze()来冻结                                    
+            2.箭头函数(箭头函数的this指向父作用域的this)
+                箭头函数和普通函数的区别
+                (1)普通函数的this指向调用时的this
+                (2)箭头函数不能用作构造函数(也就是不可以使用new命令)
+                (3)箭头函数中没有arguments(可以用rest代替) 
+            3.promise 
+                是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法
+                (1)一旦状态改变，就不会再变，任何时候都可以得到这个结果
+                (2)Promise对象代表一个异步操作，有三种状态：pending(进行中)、fulfilled(已成功)和rejected(已失败)。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+                (3)能把原来的回调写法分离出来，在异步操作执行完后，用链式调用的方式执行回调函数
+                (4)all方法  该方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后并且执行结果都是成功的时候才执行回调sd 
+            4.class      (类是构造函数的另一种写法)
+                (1)可以作为参数传递,可以作为返回值,可以给变量赋值
+                (2)constructor(){} =>  在构造函数中写属性
+                   函数(){}  =>  prototype.函数
+                (3)类的方法名可以为变量
+                (4)类的继承  extends  
+                    在constructor函数内添加 super(属性名) 继承父类属性和方法
+                    super() => call(this,属性)
+                    子类可以重写父类中的方法
+                    子类方法中可以通过super调用父类中的方法
+                    支持继承数组                  
+            5.Set map
+                Set数据容器，能够存储无重复值的有序列表
+                    let set = new Set([1,2,3,3,3,3]);
+                    set.add(3);
+                    console.log(set.size);//3
+                    console.log(set.has(5)); //false  使用has()方法来判断某个值是否存在于Set中
+                    set.delete(1);
+                    console.log(set.has(1)); //false 使用delete()方法从Set中删除某个值
+                                                     或者使用clear()方法从Set中删除所有值
+                    set.forEach(function (value,key,ownerSet) {
+                        console.log(value);
+                        console.log(key);     //1 1 2 2 3 3 (value和key值恰好一样)     
+                    })
+                Map数据结构，能够存放键值对
+                    let map = new Map();
+                    map.set('title','hello world'); //使用set()方法可以给Map添加键值对
+                    map.set('year','2018');
+                    
+                    console.log(map.size); //2
+                    console.log(map.get('title')); // hello world  通过get()方法可以从Map中提取值
+                    map.forEach((value,key,ownerMap)=>{
+                        console.log(value); //值
+                        console.log(key);  //键  //hello world  title  2018  year
+                    });
+                    
+                    has(),delete()以及clear()方法都可用
+            
+            6.解构                
+            7.扩展运算符(...)    
+                (1)作为数组一部分
+                (2)数组复制
+                (3)合并数组、对象
+                (4)类数组转化成数组  
+      -->
+      <!-- 
+          es6新特性
+            *1.变量声明 const 和 let
+                let (1)不存在变量提升（在定义变量之前使用会报错） 
+                    (2)块级作用域（es5只有全局作用域和函数作用域） 
+                    (3)暂时性死区
+                    (4)相同变量名不能重复声明
+                const 声明一个只读常量  
+                      const保证的并不是值不能更改，而是变量指向的内存地址不更改
+                      const在声明数组或对象时，内部的值是可以更改的，但可以用Object.freeze()来冻结
+            2.模板字符串(``)
+                eg: console.log(`Fifteen is ${a + b} and not ${2 * a + b}.`);
+            *3.箭头函数(箭头函数的this指向父作用域的this)
+                箭头函数和普通函数的区别
+                (1)普通函数的this指向调用时的this
+                (2)箭头函数不能用作构造函数(也就是不可以使用new命令)
+                (3)箭头函数中没有arguments(可以用rest代替)
+            4.类的引入(class)
+                (1)可以作为参数传递,可以作为返回值,可以给变量赋值
+                (2)constructor(){} =>  在构造函数中写属性
+                   函数(){}  =>  prototype.函数
+                (3)类的方法名可以为变量
+                (4)类的继承  extends  
+                    在constructor函数内添加 super(属性名) 继承父类属性和方法
+                    super() => call(this,属性)
+                    子类可以重写父类中的方法
+                    子类方法中可以通过super调用父类中的方法
+                    支持继承数组
+            5.import和 export
+                在html文件中使用script标签导入js文件时，加上type属性并设置为module。
+                export导出   定义了就直接导出：export var name= 'bsy';
+                             统一导出(推荐写法)var name= 'bsy'; var year = 1958; export {name, year};
+                import导入   使用大括号一项项地进行导入  import {name, age, height} from "./main.js";
+                             将js文件中的全部导入，使用*  import * as main from "./main.js";
+            *6.promise
+                是异步编程的一种解决方案，其实是一个构造函数，自己身上有all、reject、resolve这几个方法，原型上有then、catch等方法
+                (1)一旦状态改变，就不会再变，任何时候都可以得到这个结果
+                (2)Promise对象代表一个异步操作，有三种状态：pending(进行中)、fulfilled(已成功)和rejected(已失败)。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+                (3)能把原来的回调写法分离出来，在异步操作执行完后，用链式调用的方式执行回调函数
+                (4)all方法  该方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后并且执行结果都是成功的时候才执行回调
+            7.set和map
+                Set数据容器，能够存储无重复值的有序列表
+                    let set = new Set([1,2,3,3,3,3]);
+                    set.add(3);
+                    console.log(set.size);//3
+                    console.log(set.has(5)); //false  使用has()方法来判断某个值是否存在于Set中
+                    set.delete(1);
+                    console.log(set.has(1)); //false 使用delete()方法从Set中删除某个值
+                                                     或者使用clear()方法从Set中删除所有值
+                    set.forEach(function (value,key,ownerSet) {
+                        console.log(value);
+                        console.log(key);     //1 1 2 2 3 3 (value和key值恰好一样)     
+                    })
+                Map数据结构，能够存放键值对
+                    let map = new Map();
+                    map.set('title','hello world'); //使用set()方法可以给Map添加键值对
+                    map.set('year','2018');
+                    
+                    console.log(map.size); //2
+                    console.log(map.get('title')); // hello world  通过get()方法可以从Map中提取值
+                    map.forEach((value,key,ownerMap)=>{
+                        console.log(value); //值
+                        console.log(key);  //键  //hello world  title  2018  year
+                    });
+                    
+                    has(),delete()以及clear()方法都可用
+            8.for-in 和 for-of
+                for-in结构通常对 数组 和 对象 都可以使用，而for-of结构在对 对象 使用时会报错。
+                对于数组，使用for-in时是遍历取到[数组的索引]，需要拿到对应索引上的值需要使用 arr[index]的形式
+                    let arr = [6, 5, 4, 3, 2, 1, 0];
+                    for (let i in arr) {
+                        console.log(i);      // 0 1 2 3 4 5 6
+                        console.log(arr[i]); // 6 5 4 3 2 1 0
+                    }
+                对于数组，使用for-of时是遍历[数组的元素值]                  
+                    let arr = [6, 5, 4, 3, 2, 1, 0];
+                    for (let item of arr) {
+                        console.log(item);  // 6 5 4 3 2 1 0
+                    }
+                对于对象,使用for-in结构遍历访问到的是对象的 key，想要用到值得话需要使用 object[key]的形式
+                    let object = {
+                        first: '第一个',
+                        second: '第二个',
+                        third: '第三个'
+                    };
+                    for (let key in object) {
+                        console.log(key);         //first second third
+                        console.log(object[key]); //第一个 第二个 第三个
+                    }
+
+            9.解构(从数组和对象中提取值，对变量进行赋值)
+            10.扩展运算符(...)
+                (1)作为数组一部分
+                (2)数组复制
+                (3)合并数组、对象
+                (4)类数组转化成数组
+            11.generator
+            *12.async 和 await
+       -->
+    <script>
+        
+        // let a = (x,y,z) => {
+        //     console.log(x,y,z); //1,2,3
+        //     console.log(arguments); //报错：arguments is not defined
+        // }
+        // let a = (x,...rest) => {
+        //     // console.log(rest); //[1, 2, 3]
+        //     console.log(x,rest); // 1 [2,3]
+        // }
+        // a(1,2,3)
+
+        class Person {       //匿名写法 let Person = class{}
+
+            // 相当于在声明类时，属性写在构造函数中
+            constructor(name) {
+                this.name = name
+            }
+            // 相当于将方法写在原型prototype下 (prototype.say)
+            say() {
+                console.log(this.name + "hahah");
+            }
+        }
+        /* 类的继承 */
+        class Coder extends Person {
+            constructor(name) {
+                super(name)
+            }
+        }
+        let p1 = new Person("zs");
+        let c1 = new Coder("ccc")
+        c1.say(); //ccchahah
+        console.log(c1 instanceof Person); //true
+        console.log(c1 instanceof Coder); //true
+        p1.say(); //zshahah
+        console.log(p1 instanceof Person); //true
+
+        /* 立即调用 只用来创建一个对象就没用了 */
+        /* 类的方法名可以为变量 */
+        // let sayName = "say";
+        // let person = new class{
+        //     constructor(name){
+        //         this.name = name;
+        //     }
+        //     [sayName](){
+        //         console.log(this.name);
+        //     }
+        // }("ls")
+        // person.say() //"ls"
+    </script>
+</body>
+
+</html>

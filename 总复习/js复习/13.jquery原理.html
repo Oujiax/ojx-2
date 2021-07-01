@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">1234565</div>
+    <!-- <div class="div1"></div> -->
+    <script>
+        // $() 是一个函数 返回值jq对象
+        function $(str){
+            return new Jquery(str);
+        }
+        function Jquery(str){
+            this.eles = [];
+            var sel = str.charAt(0);
+            var name = str.substr(1);
+            if(sel == "#"){
+                this.eles.push(document.getElementById(name));
+                // this.eles = document.getElementById(name)
+                // this.eles.push(name);
+            }else if(sel == "."){
+                this.eles = [...document.getElementsByClassName(name)];
+            }
+            console.log(this.eles);
+        }
+        // $('#div1')
+
+        Jquery.prototype.css = function(arg1,arg2){
+            if(typeof arg1 == "string" && typeof arg2 == "string"){
+                this.eles.map(function(ele){
+                    ele.style[arg1] = arg2;
+                })
+            }else if(typeof arg1 == "object" && typeof arg2 == "undefined"){
+                this.eles.map(function(ele,index){
+                    for(key in arg1){
+                        ele.style[key] = arg1[key];
+                    }
+                })
+            }
+            return this;
+        }
+        Jquery.prototype.on = function(eventName,handle){
+            this.eles.map(function(ele,index){
+                ele.addEventListener(eventName,handle);
+            })
+        }
+
+        // $("#div1").css("background","red");
+        $("#div1").css({
+            background: "red",
+            height: "100px"
+        }).on('click',function(){
+            console.log('666');
+        })
+    </script>
+</body>
+</html>

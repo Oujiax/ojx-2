@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10的阶乘</title>
+</head>
+<body>
+    
+    <script>
+        /* 10的阶乘 */
+        // function fac(n){       
+        //     if(n == 0 || n == 1){
+        //         return 1;
+        //     }else{  
+        //         return (n * fac(n-1));
+        //     }
+        // }
+        // console.log(fac(10));
+        /* 方案1：10的阶乘的和 */
+        // var res = 0;
+        // for(var i =1; i <= 10; i++){
+        //     res += fac(i);
+        // }
+        // console.log(res);
+
+        /* 方案2：10的阶乘的和 */
+        var n = 1;
+        var sum = 0;
+        for(var i = 1; i <=10; i++){
+            n *= i;
+            sum += n;
+        }
+        console.log(n);
+        console.log(sum);
+    </script>
+</body>
+</html>

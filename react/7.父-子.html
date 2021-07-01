@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父—子</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+
+    <script type="text/babel">
+        let root = document.getElementById('app');
+        class Parent extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+
+                }
+                this.addFn = this.addFn.bind(this)
+            }
+            addFn() {
+                console.log(this.refs);
+                console.log(this.refs.inp.value);
+                // console.log(this.refs.child1);
+                let child1 = this.refs.child1;
+                let inpVal = this.refs.inp.value;
+                child1.add(inpVal)
+
+                // 可以使用但不推荐，耦合性太强
+                // child1.setState({
+                //     count: child1.state.count + 1
+                // })
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>父组件</h1>
+                        <input type="text" ref="inp"/>
+                        <button onClick={this.addFn}>子组件count + 1</button>
+                        
+                        <Child ref="child1"  name="child1"/>
+                        <Child ref="child1"  name="child2"/>
+                    </div>
+
+                )
+            }
+        }
+
+        class Child extends React.Component {
+            constructor(props) {
+                super(props)
+
+                this.state = {
+                    count: 0
+                }
+
+                this.add = this.add.bind(this)
+            }
+            add(num) {
+                this.setState({
+                    count: this.state.count + num * 1
+                })
+
+            }
+            render() {
+                return (
+                    <div>
+                        <h3>子组件</h3>
+                        <div>count: {this.state.count}</div>
+                        <button onClick={this.add}>count + 1</button>
+                    </div>
+
+                )
+            }
+
+        }
+
+
+        ReactDOM.render(<Parent />, root)
+    </script>
+</body>
+
+</html>

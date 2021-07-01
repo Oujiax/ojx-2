@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表达式</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+        let name = 'lisi';
+        let a = 10;
+        let b = 5;
+        let _style = {
+            color: 'red'
+        }
+        let root = document.getElementById('app');
+        ReactDOM.render(
+            <div id="container">
+                <p>姓名：{name}</p>
+                <p>sum:{a + b}</p>
+                <p style={_style}>style1</p>
+                <p style={{ background: 'blue' }}>style2</p>
+            </div>
+
+            , root)
+    </script>
+</body>
+
+</html>

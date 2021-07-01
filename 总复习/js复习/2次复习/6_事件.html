@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            height: 200px;
+            width: 200px;
+            background: #00f;
+        }
+
+        #div2 {
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        事件
+            事件源：由谁导致的事件   e.target
+            阻止事件冒泡：e.stopPropagation()
+                         ie浏览器 e.cancelBubble = true
+            阻止默认行为：e.preventDefault()
+                         return false
+                         ie浏览器 e.returnValue = false
+     -->
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <a href="http://www.baidu.com" id="a">百度</a>
+    <script>
+        var oDiv1 = document.getElementById('div1');
+        var oDiv2 = document.getElementById('div2');
+        var oA = document.getElementById('a');
+        //    oDiv1.onclick = function(e){
+        //        console.log(e.target); //<div id="div2"></div>
+        //        console.log(this); //<div id="div1"></div>
+        //    }
+
+        oDiv1.onclick = function (e) {
+            console.log("div1 click");
+            
+        }
+        oDiv2.onclick = function (e) {      
+            console.log("div2 click");
+            e.stopPropagation();
+            
+        }
+        oA.onclick = function(e){
+            console.log("阻止");
+            e.preventDefault();
+            
+        }
+    </script>
+</body>
+
+</html>

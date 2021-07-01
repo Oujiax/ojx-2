@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg" v-on:keyup="search">
+        <button @click="add">添加</button>
+        <ul>
+            <li v-for="(item,index) in showList" v-bind:class="{active:item.isActive}" @click="change(item)">
+                <span>{{item.contents}}</span>
+                <button @click.stop="del(index)">删除</button>
+            </li>
+        </ul>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                msg: '',
+                list: [
+                    {
+                        contents: "1234",
+                        isActive: false
+                    },
+                    {
+                        contents: "4567",
+                        isActive: false
+                    },
+                ],
+                showList: [
+                    {
+                        /* contents要写成字符串 */
+                        contents: "1234",
+                        isActive: false
+                    },
+                    {
+                        contents: "4567",
+                        isActive: false
+                    },
+                ]
+            },
+            methods: {
+                add() {
+                    this.list.push({
+                        contents: this.msg,
+                        isActive: false
+                    })
+                    this.showList = [...this.list]
+                    this.msg = ''
+                },
+                change(item) {
+                    item.isActive = !item.isActive
+                },
+                del(index) {
+                    this.list.splice(index, 1)
+                    this.showList = [...this.list]
+                },
+                search() {
+                    this.showList = this.list.filter((obj, index) => {
+                        /* includes() 方法用于判断字符串是否包含指定的子字符串。 */
+                        return obj.contents.includes(this.msg)
+                    })
+                    console.log(this.showList);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

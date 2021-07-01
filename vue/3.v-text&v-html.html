@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-text&v-htmlt</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}} </div>
+        <div v-text="{{msg}}"></div>
+        <div id="div3"></div>
+        
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                msg:"<a href='www.baidu.com'>百度</a>",
+            }
+        })
+    </script>
+</body>
+
+</html>

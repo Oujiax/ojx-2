@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+</head>
+<body>
+    
+    <script>
+        // 函数声明：可以在定义函数前调用
+        // fn1();
+        function fn1(){
+            console.log('fn1');
+        };
+        // fn1();
+
+
+        // 函数表达式：不可以在定义函数之前调用
+        // fn2();//报错：fn2 is not a function
+        var fn2 = function(){
+            console.log('fn2');
+        };
+        // fn2();
+
+
+        // 形参
+        // function fn3 (x,y){
+        //     console.log(x + y);
+        //     return x + y;
+        // };
+        // // 实参
+        // fn3(2,5);//7
+        // var sum = fn3(3,6);//9
+        // // 需要函数内return，否则undefined
+        // console.log(sum);//9
+
+        // var fn4 = function(x,y){
+        //     console.log(x+y);
+        //     return x+ y;
+        // }
+        // fn4(2,5);//7
+        // var s = fn4(2,5);//7
+        // console.log(s);//7
+
+        /* 递归 */
+        // 阶乘
+        function fac(n){
+            if(n == 0 || n == 1){
+                return 1;
+            }else{
+                return (n * fac(n-1));
+            }
+        }
+        var res = fac(4);
+        console.log(res);
+    </script>
+</body>
+</html>

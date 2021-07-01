@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性和监听器</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{firstName +' '+ lastNanme}}</p>
+        <p>{{total}}</p>
+        <p>{{a}}</p>
+        <button v-on:click="change" >增加</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                firstName:'John',
+                lastNanme:'White',
+                a : 10,
+            },
+            /* 计算属性：一定要有返回值 */
+            computed: {
+                total(){
+                    return this.firstName +' '+ this.lastNanme;
+                },
+
+                /* 很少用到，了解即可 */
+                // total:{
+                //     get(){
+                //         console.log('get');
+                //         return this.firstName +' '+ this.lastNanme;
+                //     },
+                /* 发生改变时会调用 */
+                //     set(){
+                //         console.log('set');;
+                //     }
+                // }
+            },
+            methods: {
+                change(){
+                    this.a +=1;
+                }
+            },
+            /* 监听器 */
+            watch:{
+                a:function(newVal,oldVal){
+                    console.log(newVal,oldVal);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

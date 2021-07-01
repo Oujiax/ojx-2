@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的定义</title>
+</head>
+
+<body>
+
+    <div id="div1">
+        <my-component title="我的全局组件1" :msg="msg"></my-component>
+        <tpl1 title="我的局部组件1" :msg="msg"></tpl1>
+    </div>
+    <div id="div2">
+        <tpl2 title="我的局部组件2" :msg="msg"></tpl2>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        /* 全局组件 */
+        Vue.component('myComponent',{
+            template:'<div>hahahahaha {{title}}  {{msg}}</div>',
+            props:['title','msg']
+
+        })
+
+        let vm1 = new Vue({
+            el:"#div1",
+            data:{
+                msg:'vm11111',
+            },
+            components:{
+                'tpl1':{
+                    template:'<div>tpl1 {{title}}  {{msg}}</div>',
+                    props:['title','msg']
+                }
+            }
+        })
+
+        let vm2 = new Vue({
+            el:"#div2",
+            data:{
+                msg:'vm11111',
+            },
+            components:{
+                'tpl2':{
+                    template:'<div>tpl2 {{title}}  {{msg}}</div>',
+                    props:['title','msg']
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

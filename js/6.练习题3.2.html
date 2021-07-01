@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习题2</title>
+</head>
+<body>
+    <script>
+        // var today = new Date();
+        // console.log(today);
+        // var year = today.getFullYear();
+        // console.log(year);
+        // if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+        //     console.log(year + ' is leap year!');
+        // }
+        
+        /* 函数声明 */
+        function isLeap(year){
+            if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+                console.log(year + ' is leap year!');
+            }else{
+                console.log(year + ' is common year!');
+            }
+        }
+        isLeap(2009);
+        
+        /* 函数表达式 */
+        // var fn1 = function(year){
+        //     if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+        //         console.log(year + ' is leap year!');
+        //     }else{
+        //         console.log(year + ' is common year!');
+        //     }
+        // }
+        // fn1(2000);
+        
+    </script>
+</body>
+</html>

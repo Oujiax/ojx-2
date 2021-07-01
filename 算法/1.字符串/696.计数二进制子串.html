@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var countBinarySubstrings = function (s) {
+            let counts = s.match(/0+|1+/g)
+            let res = 0
+            console.log(counts);
+            for (let i = 1; i < counts.length; i++) {
+                res += Math.min(counts[i].length,counts[i-1].length);
+                
+            }
+            return res;
+        };
+        console.log(countBinarySubstrings("00110011"));
+    </script>
+</body>
+
+</html>

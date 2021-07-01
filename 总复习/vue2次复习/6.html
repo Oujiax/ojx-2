@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 第一种 子组件=>父组件 -->
+        <!-- <my-com :message="msg" :fn1="add1"></my-com> -->
+        <!-- 第二种 子组件=>父组件 -->
+        <my-com :message="msg" @son="add1"></my-com>
+        <p>{{count}}</p>
+        <button @click="add1">父组件++++</button>
+    </div>
+    <template id="div1">
+        <div>
+            <p>{{message}}</p>
+            <button @click="add2">子组件+1</button>
+        </div>
+    </template>
+    <script src="../vue复习/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                msg: '爸爸对儿子说的话',
+                count: 0
+            },
+            methods: {
+                add1(){
+                    this.count++
+                }
+            },
+            components: {
+                'myCom':{
+                    template: '#div1',
+                    // props用来接收父组件向子组件传的值
+                    props: ['message','fn1'],
+                    data() {
+                        return {
+                            info: '儿子对爸爸说的话'
+                        }
+                    },
+                    methods: {
+                        add2(){
+                            // 第一种 自定义属性 子组件=>父组件
+                            // this.fn1()
+
+                            // 第二种 自定义事件 子组件=>父组件
+                            this.$emit('son')
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

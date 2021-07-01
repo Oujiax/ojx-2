@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数组件</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+        let root = document.getElementById('app');
+
+        function Com1(props) {
+            console.log(props);
+            return (
+                <div>
+                    今天天气很好
+                    <p>姓名：{props.name}</p>
+                    <p>年龄：{props.age}</p>
+                    <p>身高：{props.info.height}</p>
+                    <p>体重：{props.info.weight}</p>
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <Com1 name="lisi" age={20} info={{ height:'180', weight:'73'}}></Com1>
+            , root)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+
+        1.类
+            具有相同属性和方法的集合
+            声明类时  属性写在构造函数中  方法写在原型下
+
+            //构造函数
+            function Person(name,age){
+                this.name = name;
+                this.age = age;
+                this.say = function(){
+                    console.log(this.name + "hello")
+                }
+            }
+            var p1 = new Person("zs",20);
+            console.log(p1);
+
+        2.原型 prototype
+            函数有一个prototype属性，是一个指针，指向他的原型对象
+            原型对象下的属性和方法，可以被他的实例化对象共享
+
+            Person.prototype.sex = "male";
+            Person.prototype.say = function(){
+                console.log(this.name + "hello")
+            }
+
+            *方法写在原型下的好处：如果创建多个实例化对象，不用创建多个方法，都会用原型下的方法，只声明一次
+            原型下有constructor属性指向他的构造函数(指回)
+          __proto__: 实例化对象下的属性，指向他的构造原型
+          原型链：当从一个对象里调取属性或方法时，如果该对象本身不存在这样的属性或方法，
+                 则就会到关联的prototype中查找，如果prototype没有，
+                 就会去prototype关联的前辈prototype查找，如果再没有，
+                 则继续查找prototype.prototype引用的对象，以此类推，
+                 直到为undefined(Object的prototype为undefined)
+
+        3.继承
+            function Coder(name,age){
+                //this
+                //调用父类的Person.call() => 继承属性
+                Person.call(this,name,age)
+            },
+            
+            //继承父类的方法
+            Coder.prototype = new Person();  //破坏了原有的原型对象
+            Coder.prototype.constructor = Coder;  //要手动加上constructor属性指回构造函数
+            var c1 = new Coder("ww",23);
+     -->
+    <script>
+        function Person(name,age){
+                this.name = name;
+                this.age = age;
+                // this.say = function(){
+                //     console.log(this.name + "hello")
+                // }
+            }
+            Person.prototype.sex = "male";
+            Person.prototype.say = function(){
+                console.log(this.name + "hello")
+            }
+            // var p1 = new Person("zs",20);
+            // var p2 = new Person("ls",25);
+            // console.log(p1.sex);
+            // console.log(p2.sex);
+            // p1.say();
+            // p2.say();
+            // console.log(p1);
+            // console.log(p2);
+            function Coder(name,age){
+                //this
+                //调用父类的Person.call() => 继承属性
+                Person.call(this,name,age)
+            };
+            
+            Coder.prototype = new Person();
+            Coder.prototype.constructor = Coder;
+            var c1 = new Coder("ww",23);
+            console.log(c1);
+            console.log(c1.sex);
+            c1.say();
+    </script>
+</body>
+</html>

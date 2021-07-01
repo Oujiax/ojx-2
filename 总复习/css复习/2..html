@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #div1{
+            background: red;
+            position: sticky;
+            top: 50px;
+        }
+        .parent{
+            /* height: 50px; */
+            /* overflow: hidden; */
+            /* width: 200px; */
+            background: blue;
+            /* position: relative; */
+        }
+        #div3{
+            /* height: 100px; */
+            /* width: 100px; */
+            background: red;
+            float: left;
+            /* position: absolute; */
+            /* left: 50px; */
+            /* top: 50px; */
+        }
+        
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        #div4{
+            background: green;
+            float: left;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="parent clearfix">
+        <div id="div3">
+            3333
+        </div>
+        <div id="div4">4444</div>
+        <!-- <div class="clearfix"></div> -->
+    </div>
+    <p>hahas</p>
+    <!-- <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div>kghjgdldgjdlg</div>
+    <div id="div1">吸顶</div> -->
+</body>
+</html>

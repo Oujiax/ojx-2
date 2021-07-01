@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            /* width: 200px;
+            height: 200px; */
+            background: red;
+        }
+        .div2{
+            /* width: 100px;
+            height: 100px;
+            background: blue; */
+            color: hotpink;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- <div id="app">
+       <div id="div1" @click.once="fn1">
+           div1
+           <div id="div2" @click.stop="fn2">
+                div2
+           </div>
+       </div>
+       <a href="https://www.baidu.com" @click.prevent="fn1">百度</a>
+    </div> -->
+    <!-- <div id="app">
+        <p v-show="flag">1111</p>
+        <p v-if="flag">true true</p>
+        <p v-else>false false</p>
+        <button @click="change">改变</button>
+    </div> -->
+    <!-- <div id="app">
+        <div v-bind:class="{div1:isDiv1,div2:isDiv2}">123</div>
+        <div v-bind:class="['div1', isDiv2?'div2':'']">123</div>
+        <div :index="indexName">自定义属性</div>
+        <button @click="turn">更改样式</button>
+    </div> -->
+    <div id="app">
+        <p>
+            <input type="text" v-model="msg">
+        </p>
+        <p>
+            <input type="checkbox" v-model="fruit" value="apple">苹果
+            <input type="checkbox" v-model="fruit" value="banana">香蕉
+            <input type="checkbox" v-model="fruit" value="pear">梨
+        </p>
+        <p>
+            <input type="radio" v-model="sex" value="0">female
+            <input type="radio" v-model="sex" value="1">male
+        </p>
+        <p>
+            <select v-model="city">
+                <option value="1">哈尔滨</option>
+                <option value="2">齐齐哈尔</option>
+                <option value="3">牡丹江</option>
+                <option value="4">佳木斯</option>
+            </select>
+        </p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                flag:true,
+                isDiv1:true,
+                isDiv2:false,
+                indexName:66,
+                msg:'',
+                fruit:['pear'],
+                sex:'0',
+                city:'1'
+            },
+            methods:{
+                turn(){
+                    this.isDiv1 = !this.isDiv1
+                    this.isDiv2 = !this.isDiv2
+                }
+                // change(){
+                //     this.flag = !this.flag
+                // }
+                // fn1(){
+                //     console.log('div1');
+                // },
+                // fn2(){
+                //     console.log('div2');
+                // }
+            }
+        })
+    </script>
+</body>
+
+</html>

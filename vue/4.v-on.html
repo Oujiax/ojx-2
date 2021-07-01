@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="add('haha',$event)" >添加</button>
+        <li v-for="student in students">
+            <span>名字：{{student.name}}</span>
+            <span>年龄：{{student.age}}</span>
+        </li>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                students:[
+                    {
+                        name:"zhangsan",
+                        age:20,
+                    },
+                    {
+                        name:"lisi",
+                        age:22,
+                    },
+                    {
+                        name:"wangwu",
+                        age:18,
+                    }
+                ]
+            },
+            methods: {
+                add(str,e){
+                    this.students.push(
+                        {
+                            name:"zhaosi",
+                            age:25,
+                        }
+                    )
+                    console.log(str);
+                    console.log(e);
+                }
+            },
+        })
+    </script>
+</body>
+</html>

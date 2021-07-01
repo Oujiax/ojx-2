@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的通信</title>
+</head>
+<body>
+    <div id="app">
+        {{count}}
+        <button @click="add1">增加</button>
+        <!-- 方案一：自定义属性  子组件向父组件传递 -->
+        <!-- <com :message="msg" :fn1="add1"></com> -->
+        
+        <!-- 方案二：自定义事件  子组件向父组件传递-->
+        <com :message="msg" @son="add1"></com>
+    </div>
+    <template id="tpl">
+        <div>
+            <h3>{{message}}</h3>
+            <button @click="add2">+++++</button>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                msg:'爸爸说的话',
+                count:0
+            },
+            methods: {
+                add1(){
+                    this.count++
+                }
+            },
+            components:{
+                'com':{
+                    template:'#tpl',
+                    /* 用来接收父组件向子组件传的东西 */
+                    props:['message','fn1'],
+                    methods: {
+                        add2(){
+                            /* 方案一   自定义属性*/
+                            // this.fn1();
+
+                            /* 方案二  触发自定义事件*/
+                            this.$emit('son')
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

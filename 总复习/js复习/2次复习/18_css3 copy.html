@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            height: 100px;
+            width: 100px;
+            background: red;
+            /* 边框圆角 */
+            border-radius: 5px; 
+            /* 边框阴影 */
+            box-shadow: 5px 5px 10px #000;
+            /* 2D位移变换 */
+            transform: translate(30px,30px);
+            /* 2D旋转变换 */
+            transform: rotate(20deg);
+            /* transform: scale(1.5); */
+        }
+        #box2{
+            margin-top: 50px;
+            height: 100px;
+            width: 100px;
+            background: yellow;;
+            /* 2D缩放变换 */
+            transform: scale(0.5);
+        }
+        #box{
+            /* 3D效果——在父元素添加下面两个属性 */
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        #box3{
+            margin-top: 50px;
+            height: 100px;
+            width: 100px;
+            background: green;
+            
+        }
+        
+        #div1{
+            border: 1px solid #000;
+            height: 300px;
+            width: 300px;
+            margin-top: 70px;
+            /* background-image: url(../../../DOM/imgs/s.png); */
+            background: blue;
+            /* 背景图片尺寸 */
+            background-size: 200px 200px;
+            /* 背景图片定位区域 */
+            background-origin: padding-box;
+            /* 背景图片绘制区域 */
+            background-clip: padding-box;
+            /* 线性渐变 */
+            background: linear-gradient(to right,red,yellow);
+            /* 文本阴影 */
+            text-shadow: 5px 5px 10px #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box">
+       
+        <div id="box3"></div>
+    </div>
+    <div id="div1">
+        123456
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>

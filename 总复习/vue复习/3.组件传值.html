@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pop {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        父子组件传值
+            父组件向子组件传值 props <slot>(插槽占位)
+            子组件向父组件传值 $emit('事件名',参数)
+     -->
+    <div id="app">
+        <button @click='showLogin()'>登录</button>
+        <button @click='showRegister()'>注册</button>
+        <my-dialog v-show="isLog">
+
+        </my-dialog>
+        <my-dialog v-show="isReg">
+
+        </my-dialog>
+        <template id="temp">
+            
+        </template>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isLog: false,
+                isReg: false,
+            },
+            methods: {
+                showLogin() {
+                    this.isLog = !this.isLog,
+                    this.isReg = !this.isReg
+                },
+                showRegister() {
+                    this.isReg = !this.isReg,
+                    this.isLog = !this.isLog
+
+                }
+            },
+            components: {
+                'myDialog': {
+                    template: "#temp",
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

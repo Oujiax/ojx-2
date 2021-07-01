@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子-父</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+    let root = document.getElementById('app');
+    class Parent extends React.Component{
+        constructor(props) {
+            super(props)
+        
+            this.state = {
+                count:0
+            }
+        
+            this.addFn = this.addFn.bind(this)
+        }
+        addFn(){
+            this.setState({
+                count:this.state.count + 1
+            })
+        }
+        render() {
+            return (
+                <div>
+                    <h1>父组件</h1>
+                    <div>count: {this.state.count}</div>
+                    <Child parent={this} addFn={this.addFn}/>
+                </div>
+            );
+        }
+    }
+
+    class Child extends React.Component{
+        constructor(props) {
+            super(props)
+        
+            this.state = {
+                
+            }
+        
+            this.add = this.add.bind(this)
+        }
+        add(){
+            console.log(this.props);
+            console.log(this.props.parent);
+
+            this.props.addFn();
+            /* 可以使用但不推推荐 */
+            // let parent = this.props.parent;
+            // parent.setState({
+            //     count: parent.state.count + 1
+            // })
+        }
+        render() {
+            return (
+                <div>
+                    <h3>子组件</h3>
+                    <button onClick={this.add}>父组件count + 1</button>
+                </div>
+            );
+        }
+    }
+
+
+    ReactDOM.render(<Parent/> ,root)
+    </script>
+</body>
+</html>

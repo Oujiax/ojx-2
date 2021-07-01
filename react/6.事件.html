@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+
+    <script type="text/babel">
+    let root = document.getElementById('app')
+
+    class Com extends React.Component {
+        constructor(params){
+            super(params)
+
+            this.num = 1
+
+            this.state ={
+                number:0
+            }
+            this.add = this.add.bind(this)
+        }
+        fn1(){
+            console.log(this.num);
+        }
+        add(){
+            //  props接收的属性是只读的，不可以修改。会报错
+            // this.props.age ++;
+            // console.log(this.props.age);
+
+            // 通过this.setState()来修改state中的属性 
+            this.setState({
+                number:this.state.number + 1
+                
+            })
+            
+            // console.log(this.state.number);
+        }
+        jump(e){
+            // 阻止默认行为
+            e.preventDefault();
+            console.log(e);
+            // 这种方式不起作用
+            return false
+        }
+        render() {
+            return (
+                <div>
+                    <p>num: {this.num}</p>
+                    <button onClick={this.fn1.bind(this)}>加1</button>
+
+                    <p>number: {this.state.number}</p>
+                    <button onClick={this.add}>number加1</button>
+
+                    <a onClick={this.jump.bind(this)} href="https://www.baidu.com">百度一下</a>
+
+                    <p>年龄：{this.props.age}</p>
+                    <button onClick={this.add}>年龄+1</button>
+                </div>
+            );
+        }
+    }
+    
+    ReactDOM.render(
+    <Com age={12}></Com>
+    ,root)
+    
+    
+    </script>
+</body>
+</html>

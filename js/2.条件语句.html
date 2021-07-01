@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件语句</title>
+</head>
+<body>
+    
+    <script>
+        var age = 25;
+        switch (true){
+            case age < 18 :
+                console.log("儿童");
+                break;
+            case 18 <= age && age <= 30:
+                console.log("青年");
+                break;
+            case age > 30:
+                console.log("中年");
+                break;
+            default :
+                console.log("什么也不是");    
+        }
+    </script>
+</body>
+</html>

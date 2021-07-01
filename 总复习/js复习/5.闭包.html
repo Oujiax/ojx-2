@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 
+        闭包：(1)函数嵌套函数
+              (2)内部函数可以引用外部函数的变量或参数
+
+            eg：function fn1(){
+                    var a = 20;
+                    return function(){
+                        a++;
+                        console.log(a);
+                    }
+                }
+                fn1(); //21
+                fn1(); //22
+            闭包的好处和应用：(1)希望一个变量长期贮存在内存中
+                            (2)避免全局变量的污染(代码模块化)
+                            (3)私有成员的存在
+            
+            闭包的用法：(1)代码模块化，避免全局污染
+                       (2)循环找到对应元素的索引，不需要加索引了
+        函数的立即调用：
+            eg：
+            //调用外层函数并将返回值赋给f
+            var f = (function fn1(){
+                var a = 20;
+                    return function(){
+                        a++;
+                        console.log(a);
+                    }
+            })()
+            f();
+     -->
+     <ul id="ul1">
+         <li>111</li>
+         <li>222</li>
+         <li>333</li>
+     </ul>
+    <script>
+        var oUl = document.getElementById('ul1');
+        var aLi = document.getElementsByTagName('li');
+        for(var i=0; i<aLi.length; i++){
+            (function(i){  //i是外部函数中的参数
+                aLi[i].onclick = function(){
+                    console.log(i);
+                }
+            })(i)
+        }
+        // function fn1() {
+        //     var a = 20;
+        //     // a++;
+        //     // console.log(a);
+        //     return function () {
+        //         a++;
+        //         console.log(a);
+        //     }
+        // }
+        // // fn1(); //21
+        // // fn1(); //21
+        // var f = fn1();
+        // f(); //21
+        // f(); //22
+
+        //函数立即调用
+        var f = (function fn1(){
+            var a = 20;
+            return function(){
+                a++;
+                 console.log(a);
+            }
+        })()
+        f(); //21
+        f(); //22
+
+    </script>
+</body>
+
+</html>

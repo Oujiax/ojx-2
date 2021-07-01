@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app1">
+        <my-component title="全局组件"></my-component>
+
+        <my-com title="引用组件">
+            <p slot="slot1">今天是个好天气1</p>
+            <p slot="slot2">今天是个好天气2</p>
+        </my-com>
+    </div>
+    <div id="app2">
+        <com1 title="com1"></com1>
+        <com2 title="com2"></com2>
+        <!-- 向父组件传变量时，要用v-bind绑定属性 -->
+        <my-component title="全局组件" :content="msg"></my-component>
+    </div>
+
+    <!-- template不能做为根元素 -->
+    <template id="tpl">
+        <div>
+            {{title}}
+            <slot name="slot1"></slot>
+            <h3>组件</h3>
+            <p>666</p>
+            <!-- 插槽：把自定义组件里的html结构都可以接到 -->
+            <slot name="slot2"></slot>
+            <div>{{msg}}</div>
+            
+            <button @click="add">点击</button>
+        </div>
+        
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        // 全局组件 在挂载vue的元素中都可以使用
+        Vue.component('my-component',{
+            template:'<div>{{title}} {{content}}</div>',
+            /* 
+            通过props来接收父组件传的值
+                若传的值是常量，title="我的组件"
+                若传的值是变量，:content="msg"
+            */
+            props:['title','content']
+        })
+        // 局部组件 定义在一个实例化对象中的组件
+        let vm2 = new Vue({
+            el:'#app1',
+            data:{
+
+            },
+            components: {
+                'myCom':{
+                    template:'#tpl',
+                    props:['title'],
+                    // 组件是复用的，为了让组件间的数据不互相干扰
+                    data() {
+                        return {
+                            msg:1
+                        }
+                    },
+                    methods: {
+                        add(){
+                            this.msg += 1
+                        }
+                    },
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app2',
+            data: {
+                msg:'hello world'
+            },
+            components: {
+                'com1':{
+                    template:'<div>hahha {{title}}</div>',
+                    props:['title']
+                },
+                'com2':{
+                    template:'<div>lalala {{title}}</div>',
+                    props:['title']
+                }
+                
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

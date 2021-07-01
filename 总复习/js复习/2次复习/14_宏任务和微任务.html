@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        宏任务和微任务(任务分为宏任务和微任务)
+            宏任务(macro-task)：包括整体代码script，setTimeout，setInterval
+            (1)宏任务所处的队列就是宏任务队列
+            (2)宏任务队列可以有多个
+
+            微任务(micro-task)：new Promise.then(回调)，process.nextTick
+            (1)微任务所处的队列就是微任务队列
+            (2)只有一个微任务队列
+            (3)在上一个宏任务队列执行完毕后，如果有微任务队列就会执行微任务(队伍中所有的微任务)
+            (4)当宏任务队列中的任务执行完后，查看是否有微任务，再执行宏任务
+
+        先执行整体代码，执行完查看是否有微任务，有则执行微任务，再执行其他宏任务；没有则继续执行下一个宏任务，以此类推
+        所以，浏览器环境中，js执行任务的流程是这样的：
+            1.第一个事件循环，先执行script中的所有同步代码(即 macro-task 中的第一项任务)
+            2.再取出 micro-task 中的全部任务执行(先清空process.nextTick队列，再清空promise.then队列)
+            3.下一个事件循环，再回到 macro-task 取其中的下一项任务
+            4.再重复2
+            5.反复执行事件循环…
+     -->
+    <script>
+        //宏任务
+        // setTimeout(function(){
+        //     console.log('定时器开始');
+        // },0);
+        // console.log('代码开始执行');
+
+        // new Promise(function(resolve){
+        //     console.log('马上执行for循环');
+        //     for(var i=0; i<1000; i++){
+        //         i=99 && resolve();
+        //     }
+        // }).then(function(){   //微任务
+        //     console.log('执行then函数');
+        // })
+        /* 
+            代码开始执行 马上执行for循环 执行then函数 定时器开始
+        */
+
+        console.log('1');
+        setTimeout(function () {  //宏任务
+            console.log('2');
+            process.nextTick(function () { //微任务
+                console.log('3');
+            })
+            new Promise(function (resolve) {
+                console.log('4');
+                resolve();
+            }).then(function () { //微任务
+                console.log('5');
+            })
+        })
+        process.nextTick(function () { //微任务
+            console.log('6');
+        })
+        /*
+            输出结果：1  6  2  4  3  5
+        */
+    </script>
+</body>
+
+</html>

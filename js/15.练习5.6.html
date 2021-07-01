@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习5.6</title>
+</head>
+<body>
+    <p>编写一个带一个参数（指定显示多少层星号“*”的函数，它在页面止输出的一个5层星号“*”图案类似</p>
+    <script>
+        function fn1(n){
+            for(var i = 0; i < n; i++){
+                for(var j = 0; j < n - i; j++){
+                    document.write("&nbsp;")
+                    
+                }
+                for(var k = 0; k < i + 1; k++){
+                    document.write("* ");
+                }
+                document.write("<br>");
+                if(i == 4){
+                    document.write("......");
+                    break;
+                }
+            }
+                      
+        }
+        fn1(7);
+    </script>
+</body>
+</html>

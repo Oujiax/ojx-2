@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        事件委托
+            后生成元素的事件绑定问题
+     -->
+     <button id="btn1">添加</button>
+     <ul id="ul1">
+         <li>111</li>
+         <li>222</li>
+         <li>333</li>
+     </ul>
+    <script>
+        var oUl = document.getElementById('ul1');
+        var aLi = document.getElementsByTagName('li');
+        var oBtn = document.getElementById('btn1');
+        /* 后生成的元素无法触发事件 */
+        // for(var i=0; i<aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         console.log(this.innerHTML);
+        //     }
+        // }
+        
+        oBtn.onclick = function(){
+            var oLi = document.createElement('li');
+            oLi.innerHTML = Math.random();
+            oUl.appendChild(oLi)
+        }
+        /* 
+            给已有的父元素绑定事件，当点击子元素，会通过事件冒泡到父元素上
+        */
+       oUl.onclick = function(e){
+           if(e.target.tagName == 'LI'){
+               console.log(e.target.innerHTML);
+           }
+       }
+    </script>
+</body>
+</html>

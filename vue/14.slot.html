@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slot</title>
+</head>
+
+<body>
+    <div id="app">
+        <com></com>
+        <my-com title="组件">
+            <p slot="slot1">lalalala</p>
+            <p slot="slot2">hahhaha</p>
+        </my-com>
+
+    </div>
+    <template id="my-com">
+        <div>
+            {{title}}
+            <slot name="slot1"></slot>
+            <p>今天，哈哈是个好天气</p>
+            <!-- 插槽：可以接收到自定义组件内的所有标签的内容 -->
+            <slot name="slot2"></slot>
+            {{msg}}
+            <p>{{count}}</p>
+            <button @click="add">增加</button>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        /* 定义变量 */
+        let tpl = `<div>
+                     <h1>今天是个好天气</h1> 
+                    </div>`;
+        new Vue({
+            el: "#app",
+            components: {
+                'com': {
+                    template:tpl,
+                },
+                /* template */
+                'myCom':{
+                    template:'#my-com',
+                    props:['title'],
+                    // 组件是复用的，为了让组件间的数据不互相干扰
+                    data() {
+                        return {
+                            msg:'这是一个msg',
+                            count:0,
+                        }
+                    },
+                    methods: {
+                        add(){
+                            this.count++
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

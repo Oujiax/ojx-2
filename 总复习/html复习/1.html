@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html复习</title>
+    <style>
+        .div1{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+        .s1{
+            height: 200px;
+            width: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        1.
+        行级元素：多个占一行，水平分布，不可以设置宽高
+            eg：span  a  input  label  i(斜体)  em(斜体)  strong(加粗)
+        
+        块级元素：独占一行，垂直分布，可以设置宽高
+            eg：div p ul li h1-h6 table ...
+
+        img button特殊
+
+        2.html语义化
+            html中自带一些标签，有特殊定义，例如：h标签(标题)  p标签(段落)
+            别人阅读代码时可根据标签猜出用意
+            浏览器读取方便
+            *有利于搜索引擎优化
+            有一些标签会有一些默认样式，如果浏览器禁止了css样式，还可以突出表达样式效果
+
+        3.html5的存储方式
+          (1)本地存储localStorage
+           存储方式：以键值对(Key-Value)的方式存储，永久存储，永不失效，除非手动删除。
+           大小：每个域名5M
+           存储的内容：数组，图片，json，样式，脚本。。。（只要是能序列化成字符串的内容都可以存储）
+          (2)本地存储sessionStorage
+           HTML5 的本地存储 API 中的 localStorage 与 sessionStorage 在使用方法上是相同的，
+           区别在于 sessionStorage 在关闭页面后即被清空，而 localStorage 则会一直保存。
+          (3)离线缓存application cache
+           本地缓存应用所需的文件
+           使用方法：
+             配置manifest文件(manifest 文件是简单的文本文件,它告知浏览器被缓存的内容（以及不缓存的内容）)
+           Application Cache的三个优势：
+             离线浏览
+             提升页面载入速度
+             降低服务器压力
+          (4)Web SQL
+            关系数据库，通过SQL语句访问
+            Web SQL数据库API并不是HTML5规范的一部分，但是它是一个独立的规范，引入了一组使用SQL操作客户端数据库的APIs。
+            支持情况：Web SQL数据库可以在最新版的 Safari, Chrome 和 Opera 浏览器中工作。
+            *核心方法：
+                ①openDatabase：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+                ②transaction：这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+                ③executeSql：这个方法用于执行实际的 SQL 查询。
+          (5)IndexedDB
+            索引数据库 (IndexedDB) API (作为 HTML5 的一部分)对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线Web应用程序(比如移动Web应用程序)能够更快地运行和响应。
+
+            异步API：在IndexedDB大部分操作并不是我们常用的调用方法，返回结果的模式，而是请求——响应的模式
+
+            数据存储：indexedDB中没有表的概念，而是objectStore，一个数据库中可以包含多个objectStore，objectStore是一个灵活的数据结构，可以存放多种类型数据。也就是说一个objectStore相当于一张表，里面存储的每条数据和一个键相关联。
+     -->
+     <div class="div1"></div>
+
+     <em>abdfgrgdg</em>
+     <span class="s1">1111</span>
+    <script>
+
+    </script>
+</body>
+</html>

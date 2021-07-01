@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{count}}</p>
+        <button v-on:click="add" >增加</button>
+        <button v-on:click="del" >销毁</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                count:0,
+            },
+            methods: {
+                add(){
+                    this.count += 1;
+                },
+                del(){
+                    vm.$destroy();
+                }
+            },
+            /* 实例创建之前调用 */
+            beforeCreate() {
+                console.log("------------beforeCreate------------");
+                console.log('el:',this.$el); //undefined
+                console.log('data:',this.$data); //undefined
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>{{count}}</p>
+            },
+            /* 实例创建成功  data显示 */
+            created() {
+                console.log("------------created------------");
+                console.log('el:',this.$el); //undefined
+                console.log('data:',this.$data); //{__ob__: Observer}  count:0
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>{{count}}</p>
+            },
+            /* 元素挂载上了，但只是data在模板中占了位置 */
+            beforeMount() {
+                console.log("------------beforeMount------------");
+                console.log('el:',this.$el); //<p>{{count}}</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:0
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>{{count}}</p>
+            },
+            /* 模板中的data数据已经显示出来 */
+            mounted() {
+                console.log("------------mounted------------");
+                console.log('el:',this.$el); //<p>0</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:0
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>0</p>
+            },
+            /* 以上是页面完成第一次渲染 */
+
+            /* data发生变化时，虚拟DOM重新渲染，真实数据还未改变 */
+            beforeUpdate() {
+                console.log("------------beforeUpdate------------");
+                console.log('el:',this.$el); //<p>1</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:1
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>0</p>
+            },
+            /* 真实数据发生改变 */
+            updated() {
+                console.log("------------updated------------");
+                console.log('el:',this.$el); //<p>1</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:1
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>1</p>
+            },
+            /* vue实例销毁之前，实例仍然可用 */
+            beforeDestroy() {
+                console.log("------------beforeDestroy------------");
+                console.log('el:',this.$el); //<p>5</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:5
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>5</p>
+            },
+            /* vue实例销毁之后就无法调用，vue实例中的东西都会解绑，事件监听也被移除，子实例也会被销毁 */
+            destroyed() {
+                console.log("------------destroyed------------");
+                console.log('el:',this.$el); //<p>5</p>
+                console.log('data:',this.$data); //{__ob__: Observer}  count:5
+                console.log('innerHTML:',document.getElementById('app').innerHTML); //<p>5</p>
+            },
+        })
+    </script>
+</body>
+</html>

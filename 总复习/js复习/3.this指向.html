@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+        this指向
+            setTimeOut和setInterVal中的this指向为Window
+          改变this指向
+            (1) call()    call(obj,'','',...)
+            (2) apply()   apply(obj,['','',...])
+            (3) bind()    bind(obj,'','',...)()   //bind需自行调用
+
+            区别 (1)call和apply都能直接调用，bind不能直接调用
+                 (2)call和apply传参的方式不一样
+            
+            eg: setTimeOut中改变this指向用bind
+            setTimeOut( (function(){
+                console.log(this)
+            }).bind(this),500)
+     -->
+
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        var aLi = document.getElementsByTagName('li');
+        // for(var i=0; i < aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         console.log(this);
+        //     }
+        // }
+        for(var i=0; i < aLi.length; i++){
+            aLi[i].onclick = function(){
+                // setTimeout(function(){
+                //     console.log(this);
+                // },500)
+                setTimeout( (function(){
+                    console.log(this);
+                }).bind(this),500 )
+            }
+        }
+    </script>
+</body>
+</html>

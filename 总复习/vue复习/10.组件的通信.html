@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="add1">增加</button>
+        <div>{{count}}</div>
+        <!-- 组件的引用 -->
+        <!-- <my-com :message="msg" :fn1="add1"></my-com> -->
+        <my-com :message="msg" @son="add1"></my-com>
+    </div>
+    <!-- 组件的定义 -->
+    <template id="tpl">
+        <div>
+            <h3>{{message}}</h3>
+            <button @click="add2">add</button>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'111',
+                count:0
+            },
+            methods: {
+                add1(){
+                    this.count ++
+                }
+            },
+            components: {
+                'myCom':{
+                    template:'#tpl',
+                    /* props:用来接收父组件要传递给子组件的内容 */
+                    props:['message','fn1'],
+                    methods: {
+                        add2(){
+                            /* 方案一 子=>父 自定义属性 */
+                            // this.fn1()
+                            /* 方案二 子=>父  触发自定义事件*/
+                            this.$emit('son')
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>

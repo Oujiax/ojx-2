@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1">
+        {{msg}}
+        <button @click="msg++">增加</button>
+        <button @click="del()">删除</button>
+    </div>
+    <!-- 
+        vue生命周期
+            beforeCreate  组件实例刚被创建，组件属性计算之前，vue实例的挂载元素el和数据对象data都为     undefined，还未初始化
+
+            created       组件实例创建完成，属性已绑定，但DOM还未生成，$el属性还不存在，数据data有了
+            beforeMount   模板编译/挂载之前,data中的属性还没赋值,vue实例的$el和data都初始化了
+            mounted       模板编译/挂载之后,data中的属性已赋值
+            beforeUpdate  当data数据发生变化调用，发生在虚拟dom重新渲染
+            updated       数据更改，导致的虚拟dom重新渲染
+            beforeDestroy 组件销毁之前
+            destroyed     组件销毁之后，说明vue实例已经结束了事件监听以及和dom的绑定，但是dom结构依然存在。
+
+
+            第一次页面加载时会触发beforeCreate、created、beforeMount、mounted这几个钩子
+     -->
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#div1',
+            data:{
+                msg:0
+            },
+            methods: {
+                del(){
+                    vm.$destroy()
+                }
+            },
+            beforeCreate() {
+                console.log("beforeCreate",this.$data,this.$el) //beforeCreate undefined undefined
+            },
+            created() {
+                console.log("created",this.$data,this.$el) //created msg: 0 undefined
+                
+            },
+            beforeMount() {
+                console.log("beforeMount",this.$data,this.$el) //created msg: 0  {{msg}}
+            },
+            mounted() {
+                console.log("mounted",this.$data,this.$el) //created msg: 0  0
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate",this.$data,this.$el) //beforeUpdate msg: 1  1
+                
+            },
+            updated() {
+                console.log("updated",this.$data,this.$el) //beforeUpdate msg: 1  1
+                
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy") //beforeDestroy
+                
+            },
+            destroyed() {
+                console.log("destroyed") //destroyed
+                
+            },
+        })
+    </script>
+</body>
+
+</html>

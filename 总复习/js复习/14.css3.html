@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /* transition: width 2s ease 1s; */
+            /* linear 匀速  forwards 结束在最后一帧 */
+            animation: run 3s linear 2s 2 forwards;
+        }
+        /* 用keyframes定义动画 */
+        @keyframes run{
+            50%{
+                width: 800px;
+            }
+            100%{
+                width: 500px;
+            }
+        }
+        #div1:hover{
+            width: 400px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <!-- 
+        常见的css3属性：
+            边框：border-radius(圆角) box-shadow(阴影) box-sizing(盒模型类型)
+            背景：background-image(背景图片) background-size(大小) background-origin(定位区域) background-clip(绘制区域) liner-gradient(颜色渐变)
+            文本：text-shadow(文本阴影) word-wrap|word-break(换行)
+        动画
+            (过渡)transition: 属性 执行时间 运动方式 延迟时间
+                  animation: 动画名 执行时间 运动方式 延迟时间 执行次数 方向 最终状态
+        弹性盒模型
+            父元素：display:flex
+                   flex-direction:row|row-reverse|column|column-reverse
+                   横向从左到右排列|横向相反    纵向从上向下排列|纵向相反
+                   align-items:flex-start|flex-end|center|baseline|stretch
+                   纵轴垂直对齐方式
+                   justify-content:flex-start|flex-end|center|space-between|space-around
+                   横轴水平对齐方式
+            子元素：flex:flex-group:份数(剩余空间的百分比)
+     -->
+     
+    <script>
+
+    </script>
+</body>
+</html>

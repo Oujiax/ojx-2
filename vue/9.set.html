@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set</title>
+</head>
+<body>
+    <div id="app">
+        <button  v-on:click="change" >改变</button>
+        <li v-for="item in list">{{item}}</li>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:[1,2,3],
+            },
+            methods: {
+                change(){
+                    /* 这种调用方法无法修改页面的值，只能修改vue里的值 */
+                    // this.list[1] = 666;
+                    /* set: 第一个参数是要修改的数组，
+                            第二个参数是要修改的元素的索引
+                            第三个参数是要修改成的值   */
+                    Vue.set(this.list,1,666);
+                    this.$set(this.list,1,666)
+                }
+            },
+        })
+    </script>
+</body>
+</html>

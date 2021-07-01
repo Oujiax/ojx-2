@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script> -->
+    <script src="echarts/dist/echarts.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1" style="width:600px; height:400px">
+
+    </div>
+    <div class="pic"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('div1'))
+        var option = {
+            // 直角坐标系底板
+            grid: {
+                left: '10%',
+                // right: '30%'
+                // width: '100%'
+                // top:'20%'
+                // bottom: '50%'
+                // height: '80%'
+            },
+            color: ['red', 'blue'],
+            title: {
+                text: 'Echarts Test'
+            },
+            tooltip: {},
+            // 工具栏组件
+            toolbox: {},
+            // 数据区缩放组件
+            dataZoom: {},
+            // 视觉映射组件
+            // visualMap: {},
+            legend: {
+                data: ['折线图', '柱状图']
+            },
+            // xAxis:{
+            //     // type: 'category',
+            //     data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            // },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                },
+                {
+                    type: 'value',
+                    // data: ["棉", "羊毛", "雪纺", "牛仔布", "牛皮", "棉"]
+                }
+            ],
+            yAxis: {},
+            series: [
+                {
+                    name: '折线图',
+                    // type: 'bar',
+                    type: 'line',
+                    // type: 'pie',
+                    data: [5, 20, 36, 10, 10, 20]
+                },
+                {
+                    name: '柱状图',
+                    // type: 'bar',
+                    type: 'bar',
+                    // type: 'pie',
+                    data: [5, 20, 36, 10, 10, 20]
+                }
+                ,
+                {
+                    name: '折线图',
+                    // type: 'bar',
+                    type: 'line',
+                    // type: 'pie',
+                    data: [15, 20, 25, 10, 30, 20]
+                }
+            ]
+        }
+
+        // option = {
+        //     legend: {},
+        //     tooltip: {},
+        //     dataset: {
+        //         source: [
+        //             ['product', '2012', '2013', '2014', '2015'],
+        //             ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
+        //             ['Milk Tea', 86.5, 92.1, 85.7, 83.1],
+        //             ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4]
+        //         ]
+        //     },
+        //     xAxis: [
+        //         // gridIndex对应坐标轴grid所在的索引
+        //         { type: 'category', gridIndex: 0 },
+        //         { type: 'category', gridIndex: 1 }
+        //     ],
+        //     yAxis: [
+        //         { gridIndex: 0 },
+        //         { gridIndex: 1 }
+        //     ],
+        //     grid: [
+        //         { bottom: '55%' },
+        //         { top: '55%' }
+        //     ],
+        //     series: [
+        //         // 这几个系列会在第一个直角坐标系中，每个系列对应到 dataset 的每一行。
+        //         { type: 'bar', seriesLayoutBy: 'row' },
+        //         { type: 'bar', seriesLayoutBy: 'row' },
+        //         { type: 'bar', seriesLayoutBy: 'row' },
+        //         // 这几个系列会在第二个直角坐标系中，每个系列对应到 dataset 的每一列。
+        //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        //         { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 }
+        //     ]
+        // }
+        // var option = {
+        //     dataset: {
+        //         source: [
+        //             [12, 323, 11.2],
+        //             [23, 167, 8.3],
+        //             [81, 284, 12],
+        //             [91, 413, 4.1],
+        //             [13, 287, 13.5]
+        //         ]
+        //     },
+        //     visualMap: {
+        //         show: false,
+        //         dimension: 2, // 指向第三列（列序号从 0 开始记，所以设置为 2）。
+        //         min: 2, // 需要给出数值范围，最小数值。
+        //         max: 15, // 需要给出数值范围，最大数值。
+        //         inRange: {
+        //             // 气泡尺寸：5 像素到 60 像素。
+        //             symbolSize: [5, 60]
+        //         }
+        //     },
+        //     xAxis: {},
+        //     yAxis: {},
+        //     series: {
+        //         type: 'scatter'
+        //     }
+        // };
+        
+        myChart.setOption(option)
+        myChart.showLoading()
+        setTimeout(function(){
+            console.log('2000ms');
+            myChart.hideLoading()
+        },2000)
+        
+        myChart.on('click', { seriesName: '柱状图' }, (params) => {
+            // console.log(params.name);
+            // myChart.dispatchAction({
+            //     type: 'dataZoom',
+            //     // 开始位置的百分比
+            //     start: 40,
+            //     // 结束位置的百分比
+            //     end: 80
+            // })
+            // myChart.dispatchAction({
+            //     type: 'toolTip',
+            //     // seriesIndex: 1,
+            //     name: params.name
+            // })
+        })
+        // 导出图表图片，返回一个 base64 的 URL，可以设置为Image的src。
+        var img = new Image()
+        img.src = myChart.getDataURL({
+            type: 'png',
+            pixRatio: 2,
+            backgroundColor: '#fff'
+        })
+    //    console.log(img.src);
+    </script>
+</body>
+
+</html>

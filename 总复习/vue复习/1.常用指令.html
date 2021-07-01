@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        vue常用指令
+            v-for循环数组、对象
+            v-text & v-html识别标签
+            v-on $event @绑定事件
+            v-model双向数据绑定
+            v-bind : 绑定属性
+            v-if v-else-if v-else (相当于在html中是没有的)
+            v-show (相当于在html中的display是none)
+            (v-if是控制页面进行dom操作，若需要频繁切换使用v-show)
+     -->
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in list">
+                <span>序号：{{index + 1}}</span>
+                <span>姓名：{{item.name}}</span>
+                <span>年龄：{{item.age}}</span>
+            </li>
+        </ul>
+        <!-- 
+            v-html可以识别出标签
+            {{}}先显示出文本，再通过dom操作显示出数据
+        -->
+        <p>{{msg}}</p>
+        <p v-html="msg"></p>
+        <p v-text="msg"></p>
+        <button @click="add">增加</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            //  声明要绑定的数据
+            data: {
+                msg:'<a href="">百度</a>',
+                list: [
+                    {
+                        name:'lisi',
+                        age:20
+                    },{
+                        name:'zhangsan',
+                        age:21
+                    },{
+                        name:'wangwu',
+                        age:22
+                    }
+                ]
+            },
+            methods: {
+                add(){
+                    // this指向当前的vue的实例化对象
+                    this.list.push({
+                        name:'zhaosi',
+                        age:24
+                    })
+                    // 获取事件对象，必须用event，或者调用时传实参$event
+                    console.log(event);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

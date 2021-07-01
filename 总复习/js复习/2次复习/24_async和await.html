@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        async 和 await
+            真正意义上解决异步回调函数，同步流程表达异步操作
+            async function 方法名(){
+                await 异步操作;
+                await 异步操作;
+            }
+            当调用一个 async 函数时，会返回一个 Promise 对象。
+            async 函数中可能会有 await 表达式，这会使 async 函数暂停执行，等待 Promise 的结果出来，然后恢复async函数的执行并返回解析值（resolved）。
+     -->
+    <script>
+        async function async2() {
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    resolve();
+                    console.log("2000ms");
+                }, 2000)
+            })
+
+        }
+        async function async1() {
+            console.log("async start");
+            await async2();
+            console.log("async end");
+        }
+        async1();
+        /* 
+            输出结果：async start
+                     2000ms
+                     async end
+                     
+        */
+    </script>
+</body>
+
+</html>

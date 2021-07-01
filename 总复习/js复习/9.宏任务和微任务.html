@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        宏任务(marco-task)：包括整体代码scrpit，setTimeout，setInterval
+          (1)宏任务所处的队列就是宏任务队列
+          (2)宏任务队列可以有多个
+        
+        微任务(micro-task)：new Promise.then(回调)，process.nextTick
+          (1)微任务所处的任务队列就是微任务队列
+          (2)微任务队列只有一个
+          (3)在上一个宏任务队列执行完毕后，如果有微任务队列就会执行微任务队列中的所有微任务
+          (4)当宏任务队列中的任务执行完毕后，查看是否有微任务，再执行宏任务
+
+        eg：
+            console.log('1');
+            setTimeout(function(){ //宏任务
+                console.log('2');
+                process.nextTick(function(){
+                    console.log('3'); //微任务
+                })
+                new Promise(function(resolve){
+                    console.log('4');
+                    resolve();
+                }).then(function(){
+                    console.log('5'); //微任务
+                })
+            })
+            process.nextTick(function(){
+                console.log('6'); //微任务
+            })
+            输出结果：1 6 2 4 3 5
+     -->
+    <script>
+        setTimeout(function () {
+            console.log('定时器开始');//宏任务
+        }, 0);
+        console.log('代码执行结束');//主任务
+        new Promise(function (resolve) {
+            console.log('马上执行for循环');//主任务
+            for (var i = 0; i < 10000; i++) {
+                i = 99 && resolve();
+            }
+        }).then(function () {
+            console.log('执行then函数');//微任务
+        })
+        /* 输出结果：代码执行结束          主任务
+                    马上执行for循环       主任务
+                    执行then函数          主任务完成，先执行微任务
+                    定时器开始            最后执行宏任务
+        
+        */
+    </script>
+</body>
+
+</html>

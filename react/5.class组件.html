@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class组件</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./browser.min.js"></script>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script type="text/babel">
+    let root = document.getElementById('app');
+
+    class Com1 extends React.Component{
+        constructor(params){
+            super(params)
+        }
+        render(){
+            console.log(this.props);
+            return (
+                <div>
+                    今天天气很好
+                    <p>名字：{this.props.name}</p>
+                    <p>年龄：{this.props.age}</p>
+                    <p>数组：{this.props.arr}</p>
+                    <p>身高：{this.props.info.height}</p>
+                    <p>体重：{this.props.info.weight}</p>
+                    {this.props.children}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <Com1 name="lisi" age={20} arr={[1,2,3,4]} info={{ height:'180', weight:'73'}}>
+        <div>
+            hello world
+        </div>
+        </Com1>
+    
+    ,root)
+    </script>
+</body>
+</html>

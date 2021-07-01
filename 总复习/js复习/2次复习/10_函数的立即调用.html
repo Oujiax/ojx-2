@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        函数的立即调用
+
+        闭包用法：
+        (1)代码模块化，避免全局污染
+        (2)循环中找到对应元素的索引，不需要额外加索引
+     -->
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        /* 
+            闭包 + 函数立即调用 实例
+        */
+        // var aLi = document.getElementsByTagName('li');
+        // for( var i = 0; i < aLi.length; i++){
+        //     aLi[i].onclick = function(){
+        //         console.log(i); //3 3 3
+        //     }
+        // }
+        var aLi = document.getElementsByTagName('li');
+        for (var i = 0; i < aLi.length; i++) {
+            (function (i) {
+                aLi[i].onclick = function () {
+                    console.log(i); //0 1 2 (内存中有3个变量存储)
+                }
+            })(i)
+
+        }
+        // var f = ( //调用外层函数并将返回值赋给f
+        //     // 函数的声明
+        //     function fn1(val) {
+        //         var a = 20;
+        //         return function () {
+        //             a++;
+        //             console.log(a, val);
+        //         }
+        //     }
+        // )("hello");
+        // f() //21 "hello"
+        // f() //22 "hello"
+        
+
+    </script>
+</body>
+
+</html>

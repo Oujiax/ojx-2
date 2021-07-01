@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1"></div>
+    
+    <script>
+       function fn(arr){
+           var newArr = []
+           newArr = arr.join(',')
+           newArr.forEach((item,index) => {
+               if(item.includes('3') || parseInt(item) % 3 == 0){
+                arr.splice(index,1)
+               }
+           })
+           if(arr.length == 2){
+               return arr
+           }else{
+             return fn(arr)
+           }
+       }
+
+
+
+    </script>
+</body>
+
+</html>

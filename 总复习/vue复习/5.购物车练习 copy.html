@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 360px;
+            margin: 100px auto;
+        }
+
+        #app .goodsList {
+            margin: 10px 0;
+            border-bottom: 1px solid #000;
+        }
+        .shopList{
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            background: hotpink;
+            margin: 15px 0;
+        }
+        .active{
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        方法调用和计算属性的区别
+        方法调用：每当触发重新渲染时(只要data中的数据改变)，方法会被调用
+        计算属性：只在相关响应式依赖发生改变时它们才会重新求值
+    -->
+    <div id="app">
+        <h1>商品列表</h1>
+        <div class="goodsList">
+            <ul>
+                <li v-for="item in list" :class="['shopList',item.isActive?'active':'']" @click="clicked(item)">
+                    <span>{{item.goods}}</span>
+                    <span>{{item.price}}</span>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <p>总价：{{sum()}}</p>
+            <p>总价：{{total}}</p>
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                
+                list: [
+                    {
+                        goods: "长袖",
+                        price: 200,
+                        isActive: false
+                    },
+                    {
+                        goods: "裤子",
+                        price: 300,
+                        isActive: false
+                    },
+                    {
+                        goods: "电脑",
+                        price: 1500,
+                        isActive: false
+                    }
+                ]
+            },
+            methods: {
+                clicked(item){
+                    item.isActive = !item.isActive;
+                },
+                sum(){
+                    let count = 0
+                    this.list.forEach((val,index)=>{
+                        if(val.isActive){
+                            count += val.price
+                        }
+                    })
+                    return count
+                }
+            },
+            computed: {
+                total(){
+                    let count = 0
+                    this.list.forEach((val,index)=>{
+                        if(val.isActive){
+                            count += val.price
+                        }
+                    })
+                    return count
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        类：具有相同属性和方法的集合
+        prototype：函数有一个prototype属性(是函数独有的)，是一个指针，指向它的原型对象
+                   原型对象下的属性和方法，可以被它的每一个实例化对象共享
+        原型下有一个constructor属性，指向它的构造函数(指回)
+        
+        声明类  属性写在构造函数中
+                方法写在原型下
+        方法写在原型下的好处：如果创建多个实例化对象，不用创建多个方法，方法只在原型中声明一次
+        __proto__：实例对象下的属性，总是指向它的原型(prototype)
+
+        原型链：当从一个对象中调用属性或方法时，如果该对象自身没有该属性或方法，
+               则去它关联的prototype中寻找，如果它关联的prototype中没有，
+               则去prototype关联的前辈prototype中寻找,以此类推，
+               直到为undefined(Object的prototype为undefined)
+     -->
+     <script>
+        //  构造函数
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            // this.name = "zs";
+            // this.age = 20;
+            // this.say = function(){
+            //     console.log(this.name + "haha");
+            // }
+        }
+        Person.prototype.sex = "female"
+        Person.prototype.say = function(){
+            console.log(this.name + "haha");
+        }
+        // 实例化对象
+        var p1 = new Person("zs",20);
+        console.log(p1);
+        console.log(p1.name);
+        console.log(p1.age);
+        console.log(p1.sex);
+        p1.say();
+     </script>
+</body>
+</html>

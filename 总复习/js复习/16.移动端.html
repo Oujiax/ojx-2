@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 300px;
+            height: 300px;
+            background: blue;
+        }
+        @media screen and (max-width: 700px){
+            .div1{
+                background: red;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <!-- 
+      移动端兼容问题
+        (1)移动布局自适应不同屏幕的方式
+            响应式布局 @media
+            100%布局 弹性盒模型布局
+            等比缩放布局(rem) 1rem等于html根元素设定的font-size的px值
+        (2)机型兼容性
+            手机固有bug某些ios设备触发不了点击事件，在元素上加pointer：cursor
+            点透事件(tap)
+            1px边框(在手机上border会被放大到2px显示)
+        
+        @media screen and 这是一种最常见的写法，后面跟上限定的屏幕尺寸
+        @media 媒体类型 and 媒体功能
+        @media all and (min-width: px) amd (max-width: px)
+        @media only screen and ...
+
+        点透事件解决方式：
+          (1)touchstart/touchend代替click  (click的触发是有延迟的，大概300ms)
+             .on('touchstart',function(){
+                 e.preventDefault
+             })
+          (2)引入fastclick.js  (因为fastclick源码不依赖其他库)
+             FastClick.attach(document.body);
+
+        1px边框事件解决方式：
+          (1)通过背景图片实现
+          (2)通过transform:scale(0.5)实现
+             把border给元素的before或after等伪类，然后让伪类用css3的transform:scale(0.5)
+
+      px em rem区别
+        px相对于设备
+        em相对于父元素
+        rem相对于html
+      
+
+     -->
+</body>
+</html>

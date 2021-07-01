@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        任务队列
+            *js是单线程的
+            同步任务：在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务
+            异步任务：不进入主线程，而进入"任务队列"的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行
+
+        事件循环
+            (1)所有同步任务都在主线程上执行，形成一个执行栈
+            (2)主线程之外，还存在一个"任务队列"，只要异步任务有了运行结果，就在"任务队列"中放置一个事件
+                (只要异步操作执行完成，就到"任务队列"中排队)
+            (3)一旦执行栈中的所有同步任务执行完毕，系统就会读取"任务队列"，那些对应的异步任务，结束等待状态，进入执行栈中开始执行
+            (4)主线程不断重复步骤(3)
+     -->
+    <script>
+        // 异步过程
+            div.onclick = function(){
+                console.log('click');
+            }
+            /* 
+                1.主线程通过调用 异步函数div.onclick，发起异步请求
+                2.在某一时刻，执行异步操作，即鼠标点击
+                3.接着回调函数fn 到"任务队列"中排队
+                4.主线程从"任务队列"中 读取fn到执行栈中
+                5.在执行栈中执行fn的代码console.log('click');
+                6.控制台输出click
+            */
+        setTimeout(function(){
+            console.log('定时器开始');
+        },0);
+        console.log('代码执行结束');
+        /* 
+            代码执行结束  定时器开始
+        */
+    </script>
+</body>
+</html>

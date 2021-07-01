@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            height: 200px;
+            width: 200px;
+            background: #00f;
+        }
+
+        #div2 {
+            height: 100px;
+            width: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        绑定多个事件
+            addEventListener('事件名',处理函数,false/true)
+            false 冒泡(从里往外)
+            true  捕获(从外向里)
+            同时有捕获和冒泡时，先捕获后冒泡(先从外向里再从里往外)
+     -->
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <script>
+        var oDiv1 = document.getElementById('div1');
+        var oDiv2 = document.getElementById('div2');
+
+        oDiv1.addEventListener('click',function(){
+            console.log("div1 捕获");
+        },true)
+        oDiv2.addEventListener('click',function(){
+            console.log("div2 捕获");
+        },true)
+        oDiv1.addEventListener('click',function(){
+            console.log("div1 冒泡");
+        },false)
+        oDiv2.addEventListener('click',function(){
+            console.log("div2 冒泡");
+        },false)
+        /* 
+            输出结果：div1 捕获
+                     div2 捕获
+                     div2 冒泡
+                     div1 冒泡
+        */
+    </script>
+</body>
+
+</html>

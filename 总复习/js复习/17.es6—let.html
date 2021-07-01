@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        es6
+            let:(1)不存在变量提升   在定义之前使用该变量会报错
+                (2)相同变量名不能重复声明
+                (3)块级作用域     es5是全局作用域和函数作用域
+                (4)暂时性死区
+            let和const的区别：
+                const也有以上四种特性，但const是声明一个只读常量的;const保证的并不是值不动，而是变量指向的内存地址不能改动
+                (const在存数组或对象时存的是地址，所以数组或对象中的值可以改变，可以用Object.freeze()来冻结，就无法改变值)
+              
+     -->
+    <script>
+        /* let不存在变量提升 */
+        //  var a;
+        //  console.log(a); //undefined
+        //  var a = 10;
+
+        // console.log(a); //报错 Cannot access 'a' before initialization
+        // let a = 10;
+
+        /* let相同变量名不能重复声明 */
+        // var b = 10;
+        // var b = 20;
+        // console.log(b); //20
+        // let b = 10;
+        // let b = 20;
+        // console.log(b); //报错 Identifier 'b' has already been declared
+
+        /* let暂时性死区 */
+        let c = 10;
+        function fn() {
+            // console.log(c);//报错 Cannot access 'a' before initialization
+            // let c = 20;
+
+            let c = 20;
+            console.log(c);//20
+        }
+        fn();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-com title="我的组件" :msg="msg"></my-com>
+        <!-- <little-com title="我是局部组件" :msg1="msg"></little-com> -->
+        <tpl title="tpl">
+            <h2 slot="slot2">tpl</h2>
+            <h2 slot="slot1">tpl1111</h2>
+        </tpl>
+    </div>
+    <!-- <template id="div1">
+        <div>
+            <h1>局部组件</h1>
+            <div>{{title}}</div>
+            <div>{{msg1}}</div>
+        </div>
+
+    </template> -->
+    <template id="div2">
+        <div>
+            <h1>{{msg}}</h1>
+            <slot name="slot1"></slot>
+            <p>组件</p>
+            <slot name="slot2"></slot>
+            <button @click="add">+1</button>
+            {{count}}
+        </div>
+    </template>
+    <script src="../vue复习/vue.js"></script>
+    <script>
+        // 全局组件
+        Vue.component('myCom', {
+            //子组件 通过 props 接收 父组件 传的值，若传的值是变量要用v-bind
+            props: ['title', 'msg'],
+            template: '<h1>{{title}} {{msg}}</h1>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world'
+            },
+            methods: {
+
+            },
+            // 局部组件
+            components: {
+                // 'littleCom': {
+                //     template: '#div1',
+                //     props: ['title', 'msg1'],
+                //     data() {
+                //         return {
+
+                //         }
+                //     },
+                // },
+                'tpl': {
+                    template: '#div2',
+                    props: ['title'],
+                    data() {
+                        return {
+                            msg: '我好开心！！！',
+                            count: 0
+                        }
+                    },
+                    methods: {
+                        add() {
+                            this.count++
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

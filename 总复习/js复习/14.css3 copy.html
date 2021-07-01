@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 位移 */
+            transform: translate(100px,100px);
+            transition: all 2s;
+        }
+        .box1:hover{
+            transform: translateZ(100px);
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            /* 旋转 */
+            transform: rotate(45deg);
+            transition: all 2s;
+        }
+        .box2:hover{
+            transform: rotateX(100deg);
+        }
+        .box3{
+            width: 100px;
+            height: 100px;
+            background: green;
+            /* 缩放 */
+            /* transform: scale(1.5,0.5); */
+            transition: all 2s;
+        }
+        .box3:hover{
+            transform: scale3d(1.5,0.5,2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

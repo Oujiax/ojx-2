@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        #app{
+            width: 360px;
+            margin: 50px auto;
+        }
+        .shopList{
+            height: 40px;
+            background: hotpink;
+            margin: 10px 0;
+            list-style: none;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+        .price{
+            border-top: 1px solid #000;
+            padding-top: 5px;
+        }
+        .active{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>商品列表</h2>
+        
+            <ul>
+                <li v-for="item in list" v-bind:class="['shopList',item.isActive?'active':'']" @click="checked(item)">
+                    <span>{{item.name}}</span>
+                    <span>{{item.price}}</span>
+                </li>
+                
+            </ul>
+        
+        <div class="price">
+            <!-- 方法调用 -->
+            <p>总价：{{sum()}}</p>
+            <!-- 计算属性 -->
+            <p>总价：{{total}}</p>
+
+            <!-- 
+                方法调用和计算属性的区别
+                  方法调用：每当触发重新渲染时(只要data中的数据改变)，方法会被调用
+                  计算属性：只在相关响应式依赖发生改变时它们才会重新求值
+             -->
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {
+                        name:'衬衫',
+                        price:999,
+                        isActive:false
+                    },
+                    {
+                        name:'裙子',
+                        price:1450,
+                        isActive:false
+                    },
+                    {
+                        name:'电脑',
+                        price:15800,
+                        isActive:false
+                    },
+                    {
+                        name:'裤子',
+                        price:650,
+                        isActive:false
+                    },
+                ],
+            },
+            computed: {
+                total(){
+                    let count = 0;
+                    this.list.forEach((value,index)=>{
+                        if(value.isActive){
+                            count += value.price
+                        }
+                    })
+                    return count
+                }
+            },
+            methods: {
+                checked(obj){
+                    obj.isActive = !obj.isActive;
+                    
+                },
+                sum(){
+                    let count = 0;
+                    this.list.forEach((value,index)=>{
+                        if(value.isActive){
+                            count += value.price
+                        }
+                    })
+                    return count
+                }
+            },
+        })
+    </script>
+</body>
+</html>

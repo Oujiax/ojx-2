@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="flag">你看见我了</div>
+        <p>{{message}}</p>
+        <p>反转消息：{{change}}</p>
+        <!-- <input type="text" v-model="message"> -->
+        <!-- <button @click="change">反转消息</button> -->
+    </div>
+    <script src="../vue复习/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data:{
+                flag: true,
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                // change(){
+                //     // this.message = this.message.split('').reverse().join('')
+                // }
+            },
+            computed: {
+                change(){
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

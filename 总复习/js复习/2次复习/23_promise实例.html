@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!-- 
+        Promise实例
+     -->
+    <script>
+        /* 会直接执行 */
+        // let p = new Promise(function(resolve,rejected){
+        //     setTimeout(function(){
+        //         console.log("promise");
+        //         resolve("数据")
+        //     })
+        // },1000)
+
+        /* 用Promise的时候一般是包在一个函数中，return出Promise对象，在需要的时候去运行这个函数，执行这个函数我们得到了一个Promise对象 */
+        // function promiseClick() {
+        //     console.log("方法被调用");
+        //     let p = new Promise(function (resolve, rejected) {
+        //         setTimeout(function () {
+        //             console.log("promise start");
+        //             resolve("resolve data")
+        //         }, 2000)
+        //     })
+        //     return p
+        // }
+        /* 链式调用的方式执行回调函数 */
+        // function runAsync2(){
+        //     let p = new Promise(function(resolve,reject){
+        //         setTimeout(function(){
+        //             console.log("runAsync2");
+        //             resolve("runAsync2 data")
+        //         },2000)
+        //     })
+        //     return p
+        // }
+        // function runAsync3(){
+        //     let p = new Promise(function(resolve,reject){
+        //         setTimeout(function(){
+        //             console.log("runAsync3");
+        //             resolve("runAsync3 data")
+        //         },2000)
+        //     })
+        //     return p
+        // }
+        // promiseClick()
+
+        /* resolve是对promise成功时候的回调，它把promise的状态修改为fullfiled */
+        // promiseClick().then(function (data) {
+        //     console.log(data);
+        //     return runAsync2();
+        // })
+        //     .then(function (data) {
+        //         console.log(data);
+        //         return runAsync3();
+        //     })
+        //     .then(function (data) {
+        //         console.log(data);
+        //     })
+
+
+        function promiseClick1() {
+            console.log("方法被调用");
+            let p = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    let num = Math.random()*10;
+                    console.log("随机生成的数值",num);
+
+                    if(num < 5){
+                        resolve(num)
+                    }else{
+                        reject("fail")
+                    }
+                }, 2000)
+            })
+            return p
+        }
+        function promiseClick2() {
+            console.log("方法被调用");
+            let p = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    let num = Math.random()*10;
+                    console.log("随机生成的数值",num);
+
+                    if(num < 5){
+                        resolve(num)
+                    }else{
+                        reject("fail")
+                    }
+                }, 2000)
+            })
+            return p
+        }
+        function promiseClick3() {
+            console.log("方法被调用");
+            let p = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    let num = Math.random()*10;
+                    console.log("随机生成的数值",num);
+                    if(num < 5){
+                        resolve(num)
+                    }else{
+                        reject("fail")
+                    }
+                }, 2000)
+            })
+            return p
+        }
+        /* 用Promise对象上有then、catch方法 */
+        /* then方法可以接受两个参数，第一个对应resolve的回调，第二个对应reject的回调 */
+        // promiseClick().then(function(data){
+        //     console.log("success");
+        //     console.log(data);
+        // },function(err){
+        //     console.log(err);
+        // })
+        
+        /* catch方法  还有另外一个作用：在执行resolve的回调（也就是上面then中的第一个参数）时，如果抛出异常了（代码出错了），那么并不会报错卡死js，而是会进到这个catch方法中 */
+        // promiseClick().then(function(data){
+        //     console.log("success");
+        //     console.log(data);
+        //     console.log(noData);
+        // }).catch(function(reason,err){
+        //     console.log(err ,reason);
+        // })
+
+        /* 与then同级的另一个方法，all方法，该方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后并且执行结果都是成功的时候才执行回调 */
+        Promise.all([promiseClick1(),promiseClick2(),promiseClick3()]).then(function(data){
+            console.log(data);
+        }).catch(function(reason,err){
+            console.log(err ,reason);
+        })
+    </script>
+</body>
+
+</html>

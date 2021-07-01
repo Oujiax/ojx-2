@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        防抖：
+            一个需要频繁触发的函数，在规定时间内只让最后一次生效，前面的都不生效
+     -->
+     <button id="btn1">点击</button>
+    <script>
+        var oBtn = document.getElementById('btn1');
+        function debounce(fn,delay){
+            var timer = null;
+            return function(){
+                //当点击时，清除上一次的timer
+                clearInterval(timer);
+                timer = setTimeout(function(){
+                    // fn();//this => Window false
+                    //因为有定时器，所以在定时器上也要改变一下this指向，里面的apply才能生效
+                    fn.apply(this)
+                }.bind(this),delay)
+            }
+            
+        }
+        oBtn.onclick = debounce(function(){
+            console.log(Date.now());
+            // console.log(this); //Window false
+            console.log(this);
+        },500)
+    </script>
+</body>
+</html>

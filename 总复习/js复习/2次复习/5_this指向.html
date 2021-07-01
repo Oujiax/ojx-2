@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        改变this指向
+            (1)call(obj," "," "," ",...)
+            (1)apply(obj,[" "," "," ",...])
+            (2)bind(obj," "," "," ",...)()   需自行调用
+     -->
+     <ul>
+         <li>111</li>
+         <li>222</li>
+         <li>333</li>
+     </ul>
+    <script>
+        function a(){
+            console.log(this);
+        }
+        a(); //Window
+        setTimeout(function(){
+            console.log(this); //Window
+        }, 10);
+
+        var  aLi = document.getElementsByTagName('li');
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].onclick = function(){
+                // setTimeout(function() {
+                //     console.log(this); //Window
+                // }, 500);
+
+                setTimeout((function() {
+                    console.log(this); //li
+                }).bind(this), 500);
+                
+                // console.log(this); //li
+            }
+        }
+
+        var obj = {
+            name:"zd",
+            age:20,
+            say:function(msg1,msg2){
+                console.log(this,msg1,msg2);
+            }
+        }
+        var obj2 = {
+            name:"ls"
+        }
+        // console.log(obj);
+        obj.say("haha","1111"); //{name: "zd", age: 20, say: ƒ} "haha"
+        obj.say.call(obj2,"hehhe","222"); //{name: "ls"} "hehhe"
+        obj.say.apply(obj2,["hhhh","333"]) //{name: "ls"} "hhhh","333"
+        obj.say.bind(obj2,"hiahia","444")()  //{name: "ls"} "hiahia" "444"
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            height: 200px;
+            width: 200px;
+            background: red;
+            /* 第一种 flex */
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            position: relative;
+        }
+        .div2{
+            height: 100px;
+            width: 100px;
+            background: blue;
+            position: absolute;
+            /* 第二种 定位 margin auto */
+            /* top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto; */
+            /* 第三种 定位 translate */
+            /* top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%); */
+            /* 第四种 定位 calc */
+            top: calc(50% - 100px/2);
+            left: calc(50% - 100px/2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+
+     -->
+     <div class="div1">
+         <div class="div2"></div>
+     </div>
+     <script>
+         
+     </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        闭包
+            函数嵌套函数
+            内部函数可以引用外部函数的变量或参数
+        闭包的好处和应用：
+        (1)希望一个变量长期贮存在内存中
+        (2)避免全局变量的污染(代码模块化)
+        (3)私有成员的存在
+     --> 
+    <script>
+        function fn1(){
+            var a = 20;
+            (function fn2(){
+                a++;
+                console.log(a);
+            })()
+            // fn2();
+        }
+        fn1(); //21
+        fn1(); //21
+
+        // function fn1(val){
+        //     var a = 20;
+        //     return function(){
+        //         a++;
+        //         console.log(a,val);
+        //         console.log(this); //window
+        //     }
+        // }
+        // var f = fn1("hello");
+        // f(); //21
+        // f(); //22   (变量一直存在内存中没有释放)
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习7,8</title>
+</head>
+
+<body>
+    <script>
+        /* 练习7 */
+        // for(var i = 100; i <= 999; i++){
+        //     if(i % 4 == 2 && i % 7 == 3 && i % 9 == 5){
+        //         console.log(i);
+        //     }
+        // }
+
+        // /* 练习8 */
+        // var i = 8795;
+
+        // console.log(x);
+        // console.log(y);
+        // console.log(z);
+        for (var i = 1000; i <= 9999; i++) {
+            var x = Math.floor(i / 1000);
+            var y = Math.floor((i / 100) % 10);
+            var z = Math.floor((i / 10) % 10);
+            if (i % 13 == 0 && x == (y + z)) {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+
+</html>

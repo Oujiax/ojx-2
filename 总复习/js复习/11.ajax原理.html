@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        ajax是一种无需重新加载整个网页的情况下，能够更新部分网页的技术
+        (1)创建XMLHttpRequest对象
+        (2)向服务器发送请求
+        (3)服务器响应，触发onreadystatechange事件
+        
+        /* readyState  存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+
+            0: 请求未初始化
+            1: 服务器连接已建立
+            2: 请求已接收
+            3: 请求处理中
+            4: 请求已完成，且响应已就绪
+        */
+        /* 
+        status(常用)
+            200 ("OK") 成功 一切正常
+            500 服务器方面的问题
+            503 服务不可用
+            404 找不到资源
+            301 永久重定向
+            302 临时重定向
+            304 缓存
+        */
+     -->
+    <script>
+        //创建 XMLHttpRequest 对象
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        // GET向服务器发送请求  (请求方式 url 是否异步)
+        xmlhttp.open("GET", "test1.txt?name=zs", true);
+        xmlhttp.send();
+        // POST向服务器发送请求  (请求方式 url(地址栏中不能写参数) 是否异步)   需单独设置请求头
+        xmlhttp.open("POST","ajax_test.asp",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("fname=Bill&lname=Gates");
+
+        // 服务器响应
+        xmlhttp.onreadystatechange = function () {  // onreadystatechange 事件
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log(xmlhttp.responseText);
+                // document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

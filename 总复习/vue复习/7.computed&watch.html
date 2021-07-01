@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <p>{{firstName + ' ' + lastName}}</p> -->
+        <p>{{name}}</p>
+        <div>{{a}}</div>
+        <button @click="change">改变</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                firstName:'John',
+                lastName:'Smith',
+                a:9,
+                b:10
+            },
+            // 计算属性一定要有返回值
+            // 计算属性有缓存功能，除非依赖的响应式属性变化才会重新计算
+            computed: {
+                name(){
+                    return this.firstName + ' ' + this.lastName
+                }
+            },
+            methods: {
+                change(){
+                    this.a += 1
+                }
+            },
+            // 只能监测一个属性的变化
+            watch: {
+                a:function(newVal,oldVal){
+                    console.log(newVal,oldVal);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

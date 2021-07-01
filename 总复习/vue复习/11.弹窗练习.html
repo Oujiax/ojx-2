@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container button{
+            margin-top: 10px;
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .popWindow {
+            width: 360px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .title {
+            height: 30px;
+            border-bottom: 1px solid #000;
+            display: flex;
+            line-height: 35px;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .content,.footer{
+            margin: 20px;
+        }
+        .footer button{
+            width: 60px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .inp label{
+            width: 80px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <button @click="showLogin">登录</button>
+            <button @click="showRegister">注册</button>
+        </div>
+        <my-com title="登录" v-show="isLogin" @close="hide">
+            <div class="inp">
+                <label>账号：</label>
+                <input type="text"></div>
+            <div class="inp">
+                <label>密码：</label>
+                <input type="text"></div>
+        </my-com>
+        <my-com title="注册" v-show="isRegister" @close="hide">
+            <div class="inp">
+                <label>账号：</label>
+                <input type="text">
+            </div>
+            <div class="inp">
+                <label>密码：</label>
+                <input type="text">
+            </div>
+            <div class="inp">
+                <label>确认密码：</label>
+                <input type="text"></div>
+        </my-com>
+    </div>
+    <template id="log">
+        <div class="popWindow">
+            <div class="title">
+                <span>{{title}}</span>
+                <span @click="closeDialog">X</span>
+            </div>
+            <div class="content">
+                <slot></slot>
+            </div>
+            <div class="footer">
+                <button>{{title}}</button>
+            </div>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isLogin: false,
+                isRegister: false,
+            },
+            methods: {
+                showLogin() {
+                    this.isLogin = true
+                    this.isRegister = false
+                },
+                showRegister() {
+                    this.isRegister = true
+                    this.isLogin = false
+                },
+                hide(){
+                    this.isRegister = false
+                    this.isLogin = false
+                }
+            },
+            components: {
+                'myCom': {
+                    template: '#log',
+                    props: ['title'],
+                    data() {
+                        return {
+
+                        }
+                    },
+                    methods: {
+                        closeDialog(){
+                            this.$emit('close')
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
